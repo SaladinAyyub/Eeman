@@ -8,7 +8,9 @@ def get_method_manual():
 
 def get_method_response():
     method_response = input(
-        "Do you want to use the nearest calculation method ?\n Type Y/Yes to automatically get the nearest calculation method\n Type N/No to set calculation method manually\n"
+        "Do you want to use the nearest calculation method ?\n"
+        "Type Y/Yes to automatically get the nearest calculation method.\n"
+        "Type N/No to set calculation method manually.\n"
     ).lower()
 
     if method_response == "n" or method_response == "no":
