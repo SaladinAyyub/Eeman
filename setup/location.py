@@ -6,6 +6,7 @@ country = None
 
 
 def get_location_auto():
+    print("getting automatic location...")
     g = geocoder.ip("me")
     global city
     global country
