@@ -4,7 +4,7 @@ import setup_cli.location as location
 import setup_cli.method as method
 
 
-def run_setup():
+def run():
     location.get_location_response()
     method.get_method_response()
 

@@ -4,6 +4,6 @@ import gui.start as gui
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "cli":
-        cli.run_setup()
+        cli.run()
     else:
         gui.run()
