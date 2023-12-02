@@ -1,7 +1,7 @@
 import requests
 
-import setup.location as location
-import setup.method as method
+import setup_cli.location as location
+import setup_cli.method as method
 
 
 def run_setup():
