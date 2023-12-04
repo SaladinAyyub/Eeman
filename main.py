@@ -7,6 +7,7 @@ from PyQt6.QtWidgets import (
 )
 
 import sys
+import setup
 
 
 class Window(QMainWindow):
@@ -18,15 +19,20 @@ class Window(QMainWindow):
         self.setup_ui()
 
     def setup_ui(self):
-        label = QLabel("Do you want to set automatic location ?")
-        label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.setCentralWidget(label)
-        yes_btn = QPushButton("Yes", self)
-        yes_btn.resize(100, 50)
-        yes_btn.move(50, 200)
-        no_btn = QPushButton("No", self)
-        no_btn.resize(100, 50)
-        no_btn.move(350, 200)
+        ask_location_label = QLabel("Do you want to set automatic location ?")
+        ask_location_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.setCentralWidget(ask_location_label)
+        location_yes_btn = QPushButton("Yes", self)
+        location_yes_btn.resize(100, 50)
+        location_yes_btn.move(50, 200)
+        location_no_btn = QPushButton("No", self)
+        location_no_btn.resize(100, 50)
+        location_no_btn.move(350, 200)
+        location_yes_btn.clicked.connect(self.auto_location)
+
+    def auto_location(self):
+        setup.get_location_auto()
+        print(setup.city, setup.country)
 
 
 def run():
