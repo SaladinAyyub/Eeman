@@ -4,7 +4,6 @@ from PyQt6.QtWidgets import (
     QMainWindow,
     QPushButton,
     QLabel,
-    QLineEdit,
 )
 
 import sys
@@ -28,9 +27,6 @@ class Window(QMainWindow):
         no_btn = QPushButton("No", self)
         no_btn.resize(100, 50)
         no_btn.move(350, 200)
-        input = QLineEdit(self)
-        lol = input.text()
-        print(lol)
 
 
 def run():
