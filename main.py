@@ -11,7 +11,7 @@ app_name = "Eeman"
 class WelcomeWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.set_default_size(300, 400)
+        self.set_default_size(400, 500)
         self.set_title(f"As-salamu alaykum - {app_name}")
 
         self.box_main = Gtk.Box(
@@ -48,18 +48,30 @@ class WelcomeWindow(Gtk.ApplicationWindow):
             halign=Gtk.Align.CENTER,
             valign=Gtk.Align.CENTER,
         )
+        self.page2.set_margin_start(20)
+        self.page2.set_margin_end(20)
         self.carousel.append(self.page2)
         self.clamp = Adw.Clamp()
         self.page2.append(self.clamp)
         self.listbox = Gtk.ListBox(selection_mode=Gtk.SelectionMode.NONE)
         self.listbox.get_style_context().add_class("boxed-list")
-        self.clamp.set_child(self.listbox)
+        self.prfgr_setup = Adw.PreferencesGroup(title="Setup")
+        self.prfgr_setup.add(self.listbox)
+        self.clamp.set_child(self.prfgr_setup)
+
         self.location_setting = Adw.ComboRow(title="Location Mode")
         self.location_mode = Gtk.StringList()
         self.location_mode.append("Automatic using IP")
         self.location_mode.append("Manual (City, Country)")
         self.location_setting.set_model(self.location_mode)
         self.listbox.append(self.location_setting)
+
+        self.method_setting = Adw.ComboRow(title="Calculation Method")
+        self.method_mode = Gtk.StringList()
+        self.method_mode.append("Automatic (Nearest)")
+        self.method_mode.append("Manual (Choose Method)")
+        self.method_setting.set_model(self.method_mode)
+        self.listbox.append(self.method_setting)
 
 
 class MyApp(Adw.Application):
