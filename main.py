@@ -48,30 +48,54 @@ class WelcomeWindow(Gtk.ApplicationWindow):
             halign=Gtk.Align.CENTER,
             valign=Gtk.Align.CENTER,
         )
-        self.page2.set_margin_start(20)
-        self.page2.set_margin_end(20)
+        self.prfbox = Gtk.Box(
+            orientation=Gtk.Orientation.VERTICAL,
+            margin_start=20,
+            margin_end=20,
+        )
         self.carousel.append(self.page2)
         self.clamp = Adw.Clamp()
         self.page2.append(self.clamp)
-        self.listbox = Gtk.ListBox(selection_mode=Gtk.SelectionMode.NONE)
-        self.listbox.get_style_context().add_class("boxed-list")
+        self.listbox1 = Gtk.ListBox(selection_mode=Gtk.SelectionMode.NONE)
+        self.listbox1.get_style_context().add_class("boxed-list")
+        self.listbox2 = Gtk.ListBox(selection_mode=Gtk.SelectionMode.NONE)
+        self.listbox2.get_style_context().add_class("boxed-list")
         self.prfgr_setup = Adw.PreferencesGroup(title="Setup")
-        self.prfgr_setup.add(self.listbox)
-        self.clamp.set_child(self.prfgr_setup)
+        self.prfgr_appearance = Adw.PreferencesGroup(title="Appearance")
+        self.prfgr_appearance.add(self.listbox2)
+        self.prfgr_setup.add(self.listbox1)
+        self.clamp.set_child(self.prfbox)
+        self.prfbox.append(self.prfgr_setup)
+        self.prfbox.append(self.prfgr_appearance)
+        self.prfgr_appearance.set_margin_top(10)
 
         self.location_setting = Adw.ComboRow(title="Location Mode")
         self.location_mode = Gtk.StringList()
         self.location_mode.append("Automatic using IP")
         self.location_mode.append("Manual (City, Country)")
         self.location_setting.set_model(self.location_mode)
-        self.listbox.append(self.location_setting)
+        self.listbox1.append(self.location_setting)
 
         self.method_setting = Adw.ComboRow(title="Calculation Method")
         self.method_mode = Gtk.StringList()
         self.method_mode.append("Automatic (Nearest)")
         self.method_mode.append("Manual (Choose Method)")
         self.method_setting.set_model(self.method_mode)
-        self.listbox.append(self.method_setting)
+        self.listbox1.append(self.method_setting)
+
+        self.dark_theme_setting = Adw.ActionRow(title="Dark theme")
+        self.dark_theme_switch = Gtk.Switch(valign=Gtk.Align.CENTER)
+        self.dark_theme_setting.add_suffix(self.dark_theme_switch)
+        self.dark_theme_switch.connect("state-set", self.set_theme)
+        self.listbox2.append(self.dark_theme_setting)
+
+    def set_theme(self, dark_theme_switch, state):
+        app = self.get_application()
+        sm = app.get_style_manager()
+        if state:
+            sm.set_color_scheme(Adw.ColorScheme.PREFER_DARK)
+        else:
+            sm.set_color_scheme(Adw.ColorScheme.PREFER_LIGHT)
 
 
 class MyApp(Adw.Application):
