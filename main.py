@@ -1,46 +1,67 @@
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QPushButton,
-    QLabel,
-)
-
 import sys
-import setup
+import gi
+
+gi.require_version("Gtk", "4.0")
+gi.require_version("Adw", "1")
+from gi.repository import Gtk, Adw  # noqa E:402
+
+app_name = "Eeman"
 
 
-class Window(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("Eeman")
-        self.setFixedSize(500, 300)
-        self.setStyleSheet("background-color: darkblue")
-        self.setup_ui()
+class WelcomeWindow(Gtk.ApplicationWindow):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.set_default_size(300, 400)
+        self.set_title(f"As-salamu alaykum - {app_name}")
 
-    def setup_ui(self):
-        ask_location_label = QLabel("Do you want to set automatic location ?")
-        ask_location_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.setCentralWidget(ask_location_label)
-        location_yes_btn = QPushButton("Yes", self)
-        location_yes_btn.resize(100, 50)
-        location_yes_btn.move(50, 200)
-        location_no_btn = QPushButton("No", self)
-        location_no_btn.resize(100, 50)
-        location_no_btn.move(350, 200)
-        location_yes_btn.clicked.connect(self.auto_location)
+        self.box_main = Gtk.Box(
+            orientation=Gtk.Orientation.VERTICAL, valign=Gtk.Align.FILL, vexpand=True
+        )
+        self.set_child(self.box_main)
 
-    def auto_location(self):
-        setup.get_location_auto()
-        print(setup.city, setup.country)
+        # Carousel
+        self.carousel = Adw.Carousel(
+            hexpand=True, vexpand=True, allow_scroll_wheel=True, allow_long_swipes=False
+        )
+        self.box_main.append(self.carousel)
+
+        # Indicator
+        self.stk_indicator = Gtk.Stack(
+            transition_type=Gtk.StackTransitionType.CROSSFADE
+        )
+        self.box_main.append(self.stk_indicator)
+        self.carousel_dots = Adw.CarouselIndicatorDots(carousel=self.carousel)
+        self.stk_indicator.add_titled(self.carousel_dots, "page0", "page0")
+        # Page 1
+        self.page1 = Adw.StatusPage(
+            title="As-salamu alaykum !",
+            description="we will run through the setup process now...",
+            icon_name="preferences-desktop-screensaver-symbolic",
+            hexpand=True,
+            vexpand=True,
+        )
+        self.carousel.append(self.page1)
+        # Page 2
+        self.page2 = Gtk.Box(
+            hexpand=True,
+            vexpand=True,
+            halign=Gtk.Align.CENTER,
+            valign=Gtk.Align.CENTER,
+        )
+        self.carousel.append(self.page2)
+        self.clamp = Adw.Clamp()
+        self.page2.append(self.clamp)
 
 
-def run():
-    app = QApplication(sys.argv)
-    window = Window()
-    window.show()
-    app.exec()
+class MyApp(Adw.Application):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.connect("activate", self.on_activate)
+
+    def on_activate(self, app):
+        self.win = WelcomeWindow(application=app)
+        self.win.present()
 
 
-if __name__ == "__main__":
-    run()
+app = MyApp(application_id="sh.shuriken.Eeman")
+app.run(sys.argv)
