@@ -1,5 +1,6 @@
 import sys
 import gi
+import setup
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -74,6 +75,9 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.location_mode.append("Automatic using IP")
         self.location_mode.append("Manual (City, Country)")
         self.location_setting.set_model(self.location_mode)
+        self.location_setting.connect(
+            "notify::selected-item", self.on_location_mode_set
+        )
         self.listbox1.append(self.location_setting)
 
         self.method_setting = Adw.ComboRow(title="Calculation Method")
@@ -88,6 +92,14 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.dark_theme_setting.add_suffix(self.dark_theme_switch)
         self.dark_theme_switch.connect("state-set", self.set_theme)
         self.listbox2.append(self.dark_theme_setting)
+
+    def on_location_mode_set(self, location_setting, event):
+        if "Automatic" in self.location_setting.get_selected_item().get_string():
+            setup.get_location_auto()
+            print(setup.city)
+            print(setup.country)
+        if "Manual" in self.location_setting.get_selected_item().get_string():
+            print("ask for manual location")
 
     def set_theme(self, dark_theme_switch, state):
         app = self.get_application()
