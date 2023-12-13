@@ -32,7 +32,7 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.box_main.append(self.stk_indicator)
         self.carousel_dots = Adw.CarouselIndicatorDots(carousel=self.carousel)
         self.stk_indicator.add_titled(self.carousel_dots, "page0", "page0")
-        # Page 1
+        # Page 1 - Welcome Page
         self.page1 = Adw.StatusPage(
             title="As-salamu alaykum !",
             description="we will run through the setup process now...",
@@ -41,7 +41,7 @@ class WelcomeWindow(Gtk.ApplicationWindow):
             vexpand=True,
         )
         self.carousel.append(self.page1)
-        # Page 2
+        # Page 2 - Setup Page
         self.page2 = Gtk.Box(
             hexpand=True,
             vexpand=True,
@@ -51,6 +51,15 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.carousel.append(self.page2)
         self.clamp = Adw.Clamp()
         self.page2.append(self.clamp)
+        self.listbox = Gtk.ListBox(selection_mode=Gtk.SelectionMode.NONE)
+        self.listbox.get_style_context().add_class("boxed-list")
+        self.clamp.set_child(self.listbox)
+        self.location_setting = Adw.ComboRow(title="Location Mode")
+        self.location_mode = Gtk.StringList()
+        self.location_mode.append("Automatic using IP")
+        self.location_mode.append("Manual (City, Country)")
+        self.location_setting.set_model(self.location_mode)
+        self.listbox.append(self.location_setting)
 
 
 class MyApp(Adw.Application):
