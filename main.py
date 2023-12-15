@@ -86,6 +86,14 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.method_mode.append("Manual (Choose Method)")
         self.method_setting.set_model(self.method_mode)
         self.listbox1.append(self.method_setting)
+        self.manual_location_country = Adw.ComboRow(title="Country")
+        self.manual_location_city = Adw.ComboRow(title="City")
+        self.manual_method = Adw.ComboRow(title="Calculation Method")
+        self.method_setting.connect("notify::selected-item", self.on_method_mode_set)
+
+        self.listbox1.append(self.manual_location_country)
+        self.listbox1.append(self.manual_location_city)
+        self.listbox1.append(self.manual_method)
 
         self.dark_theme_setting = Adw.ActionRow(title="Dark theme")
         self.dark_theme_switch = Gtk.Switch(valign=Gtk.Align.CENTER)
@@ -98,8 +106,17 @@ class WelcomeWindow(Gtk.ApplicationWindow):
             setup.get_location_auto()
             print(setup.city)
             print(setup.country)
+            self.manual_location_country.set_sensitive(False)
+            self.manual_location_city.set_sensitive(False)
         if "Manual" in self.location_setting.get_selected_item().get_string():
-            print("ask for manual location")
+            self.manual_location_country.set_sensitive(True)
+            self.manual_location_city.set_sensitive(True)
+
+    def on_method_mode_set(self, method_setting, event):
+        if "Automatic" in self.method_setting.get_selected_item().get_string():
+            self.manual_method.set_sensitive(False)
+        if "Manual" in self.method_setting.get_selected_item().get_string():
+            self.manual_method.set_sensitive(True)
 
     def set_theme(self, dark_theme_switch, state):
         app = self.get_application()
