@@ -3,6 +3,7 @@ import geocoder
 
 city = None
 country = None
+method = None
 
 
 def get_location_auto():

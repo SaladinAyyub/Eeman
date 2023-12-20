@@ -88,12 +88,30 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.listbox1.append(self.method_setting)
         self.manual_location_country = Adw.ComboRow(title="Country")
         self.manual_location_city = Adw.ComboRow(title="City")
-        self.manual_method = Adw.ComboRow(title="Calculation Method")
+        self.manual_method_setting = Adw.ComboRow(title="Calculation Method")
+        self.manual_method_mode = Gtk.StringList()
+        self.manual_method_mode.append("University of Islamic Sciences, Karachi")
+        self.manual_method_mode.append("Islamic Society of North America")
+        self.manual_method_mode.append("Muslim World League")
+        self.manual_method_mode.append("Umm Al-Qura University, Makkah")
+        self.manual_method_mode.append("Egyptian General Authority of Survey")
+        self.manual_method_mode.append("Institute of Geophysics, University of Tehran")
+        self.manual_method_mode.append("Gulf Region")
+        self.manual_method_mode.append("Kuwait")
+        self.manual_method_mode.append("Qatar")
+        self.manual_method_mode.append("Majlis Ugama Islam Singapura, Singapore")
+        self.manual_method_mode.append("Union Organization islamic de France")
+        self.manual_method_mode.append("Diyanet İşleri Başkanlığı, Turkey")
+        self.manual_method_mode.append("Spiritual Administration of Muslims of Russia")
+        self.manual_method_mode.append("Moonsighting Committee Worldwide")
+        self.manual_method_mode.append("Dubai (unofficial)")
         self.method_setting.connect("notify::selected-item", self.on_method_mode_set)
+        self.manual_method_setting.set_model(self.manual_method_mode)
 
         self.listbox1.append(self.manual_location_country)
         self.listbox1.append(self.manual_location_city)
-        self.listbox1.append(self.manual_method)
+        self.listbox1.append(self.manual_method_setting)
+        self.manual_method_setting.set_sensitive(False)
 
         self.dark_theme_setting = Adw.ActionRow(title="Dark theme")
         self.dark_theme_switch = Gtk.Switch(valign=Gtk.Align.CENTER)
@@ -104,8 +122,6 @@ class WelcomeWindow(Gtk.ApplicationWindow):
     def on_location_mode_set(self, location_setting, event):
         if "Automatic" in self.location_setting.get_selected_item().get_string():
             setup.get_location_auto()
-            print(setup.city)
-            print(setup.country)
             self.manual_location_country.set_sensitive(False)
             self.manual_location_city.set_sensitive(False)
         if "Manual" in self.location_setting.get_selected_item().get_string():
@@ -114,9 +130,10 @@ class WelcomeWindow(Gtk.ApplicationWindow):
 
     def on_method_mode_set(self, method_setting, event):
         if "Automatic" in self.method_setting.get_selected_item().get_string():
-            self.manual_method.set_sensitive(False)
+            self.manual_method_setting.set_sensitive(False)
+            setup.method = None
         if "Manual" in self.method_setting.get_selected_item().get_string():
-            self.manual_method.set_sensitive(True)
+            self.manual_method_setting.set_sensitive(True)
 
     def set_theme(self, dark_theme_switch, state):
         app = self.get_application()
