@@ -109,6 +109,10 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.manual_method_mode.append("Dubai (unofficial)")
         self.method_setting.connect("notify::selected-item", self.on_method_mode_set)
         self.manual_method_setting.set_model(self.manual_method_mode)
+        self.manual_location_country.set_show_apply_button(True)
+        self.manual_location_city.set_show_apply_button(True)
+        self.manual_location_country.connect("apply", self.on_manual_location_country)
+        self.manual_location_city.connect("apply", self.on_manual_location_city)
 
         self.listbox1.append(self.manual_location_country)
         self.listbox1.append(self.manual_location_city)
@@ -144,6 +148,12 @@ class WelcomeWindow(Gtk.ApplicationWindow):
             sm.set_color_scheme(Adw.ColorScheme.PREFER_DARK)
         else:
             sm.set_color_scheme(Adw.ColorScheme.PREFER_LIGHT)
+
+    def on_manual_location_country(self, manual_location_country):
+        setup.country = self.manual_location_country.get_text()
+
+    def on_manual_location_city(self, manual_location_city):
+        setup.city = self.manual_location_city.get_text()
 
 
 class MyApp(Adw.Application):
