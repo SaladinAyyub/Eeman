@@ -128,6 +128,27 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.dark_theme_switch.connect("state-set", self.set_theme)
         self.listbox2.append(self.dark_theme_setting)
 
+        # Page 3 - End Setup
+        self.end_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.page3 = Adw.StatusPage(
+            title="All set",
+            description="Eeman app is now all setup, you can always change settings later",
+            icon_name="preferences-desktop-screensaver-symbolic",
+            hexpand=True,
+            vexpand=True,
+        )
+        self.done_button = Gtk.Button(label="Next")
+        self.done_button.get_style_context().add_class("suggested-action")
+        self.go_back_button = Gtk.Button(label="Go back")
+        self.page3.set_child(self.end_box)
+        self.end_box.append(self.done_button)
+        self.end_box.append(self.go_back_button)
+        self.carousel.append(self.page3)
+        self.go_back_button.connect("clicked", self.go_back)
+
+    def go_back(self, done_button):
+        self.carousel.scroll_to(self.page2, True)
+
     def on_location_mode_set(self, location_setting, event):
         if "Automatic" in self.location_setting.get_selected_item().get_string():
             setup.get_location_auto()
