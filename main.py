@@ -109,6 +109,9 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.manual_method_mode.append("Dubai (unofficial)")
         self.method_setting.connect("notify::selected-item", self.on_method_mode_set)
         self.manual_method_setting.set_model(self.manual_method_mode)
+        self.manual_method_setting.connect(
+            "notify::selected-item", self.on_manual_method_set
+        )
         self.manual_location_country.set_show_apply_button(True)
         self.manual_location_city.set_show_apply_button(True)
         self.manual_location_country.connect("apply", self.on_manual_location_country)
@@ -140,6 +143,49 @@ class WelcomeWindow(Gtk.ApplicationWindow):
             setup.method = None
         if "Manual" in self.method_setting.get_selected_item().get_string():
             self.manual_method_setting.set_sensitive(True)
+            self.set_manual_method()
+
+    def on_manual_method_set(self, manual_method, event):
+        self.set_manual_method()
+
+    def set_manual_method(self):
+        method_string = self.manual_method_setting.get_selected_item().get_string()
+        if "Karachi" in method_string:
+            setup.method = 1
+        if "North America" in method_string:
+            setup.method = 2
+        if "World League" in method_string:
+            setup.method = 3
+        if "Makkah" in method_string:
+            setup.method = 4
+        if "Egyptian" in method_string:
+            setup.method = 5
+        if "Tehran" in method_string:
+            setup.method = 7
+        if "Gulf" in method_string:
+            setup.method = 8
+        if "Kuwait" in method_string:
+            setup.method = 9
+        if "Qatar" in method_string:
+            setup.method = 10
+        if "Singapore" in method_string:
+            setup.method = 11
+        if "France" in method_string:
+            setup.method = 12
+        if "Turkey" in method_string:
+            setup.method = 13
+        if "Russia" in method_string:
+            setup.method = 14
+        if "Moonsighting" in method_string:
+            setup.method = 15
+        if "Dubai" in method_string:
+            setup.method = 16
+
+    def on_manual_location_country(self, manual_location_country):
+        setup.country = self.manual_location_country.get_text()
+
+    def on_manual_location_city(self, manual_location_city):
+        setup.city = self.manual_location_city.get_text()
 
     def set_theme(self, dark_theme_switch, state):
         app = self.get_application()
@@ -148,12 +194,6 @@ class WelcomeWindow(Gtk.ApplicationWindow):
             sm.set_color_scheme(Adw.ColorScheme.PREFER_DARK)
         else:
             sm.set_color_scheme(Adw.ColorScheme.PREFER_LIGHT)
-
-    def on_manual_location_country(self, manual_location_country):
-        setup.country = self.manual_location_country.get_text()
-
-    def on_manual_location_city(self, manual_location_city):
-        setup.city = self.manual_location_city.get_text()
 
 
 class MyApp(Adw.Application):
