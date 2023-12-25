@@ -1,5 +1,6 @@
 import gi
 import gui.welcome as welcome
+import libs.setup as setup
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -72,14 +73,87 @@ class DisplayWindow(Adw.ApplicationWindow):
         )
 
         # Page 1
-        self.page1 = Gtk.Box(
-            hexpand=True,
-            vexpand=True,
-            halign=Gtk.Align.CENTER,
-            valign=Gtk.Align.CENTER,
-        )
+        self.page1 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.stack.add_titled(self.page1, "page0", "Prayer")
         self.stack.get_page(self.page1).set_icon_name("emoji-recent-symbolic")
+        setup.get_response()
+        self.clamp = Adw.Clamp()
+        self.page1.append(self.clamp)
+        # Wrapper inside Adw.Clamp
+        self.box_wrapper = Gtk.Box(
+            spacing=10,
+            margin_start=20,
+            margin_end=20,
+            margin_top=20,
+            margin_bottom=20,
+            orientation=Gtk.Orientation.VERTICAL,
+        )
+        self.clamp.set_child(self.box_wrapper)
+        self.fajr_box = Gtk.Box()
+        self.fajr_box.get_style_context().add_class("card")
+        self.box_wrapper.append(self.fajr_box)
+
+        self.fajr_label = Gtk.Label(
+            label=f"Fajr - {setup.fajr}",
+            margin_start=10,
+            margin_end=10,
+            margin_top=10,
+            margin_bottom=10,
+        )
+        self.fajr_box.append(self.fajr_label)
+
+        self.dhuhr_box = Gtk.Box()
+        self.dhuhr_box.get_style_context().add_class("card")
+        self.box_wrapper.append(self.dhuhr_box)
+
+        self.dhuhr_label = Gtk.Label(
+            label=f"Dhuhr - {setup.dhuhr}",
+            margin_start=10,
+            margin_end=10,
+            margin_top=10,
+            margin_bottom=10,
+        )
+        self.dhuhr_box.append(self.dhuhr_label)
+
+        self.asr_box = Gtk.Box()
+        self.asr_box.get_style_context().add_class("card")
+        self.box_wrapper.append(self.asr_box)
+
+        self.asr_label = Gtk.Label(
+            label=f"Asr - {setup.asr}",
+            margin_start=10,
+            margin_end=10,
+            margin_top=10,
+            margin_bottom=10,
+        )
+        self.asr_box.append(self.asr_label)
+
+        self.maghrib_box = Gtk.Box()
+        self.maghrib_box.get_style_context().add_class("card")
+        self.box_wrapper.append(self.maghrib_box)
+
+        self.maghrib_label = Gtk.Label(
+            label=f"Maghrib - {setup.maghrib}",
+            margin_start=10,
+            margin_end=10,
+            margin_top=10,
+            margin_bottom=10,
+        )
+        self.maghrib_box.append(self.maghrib_label)
+
+        self.isha_box = Gtk.Box()
+        self.isha_box.get_style_context().add_class("card")
+        self.box_wrapper.append(self.isha_box)
+
+        # Label inside sample box
+        self.isha_label = Gtk.Label(
+            label=f"Maghrib - {setup.isha}",
+            margin_start=10,
+            margin_end=10,
+            margin_top=10,
+            margin_bottom=10,
+        )
+        self.isha_box.append(self.isha_label)
 
     def on_sq_get_visible_child(self, widget, event):
         if self.sq_viewswitcher.get_visible_child() == self.wintitle:
