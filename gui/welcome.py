@@ -130,7 +130,9 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.listbox2.append(self.dark_theme_setting)
 
         # Page 3 - End Setup
-        self.end_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.end_box = Gtk.Box(
+            orientation=Gtk.Orientation.VERTICAL, halign=Gtk.Align.CENTER, spacing=10
+        )
         self.page3 = Adw.StatusPage(
             title="All set",
             description="Eeman app is now all setup, you can always change settings later",
