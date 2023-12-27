@@ -9,12 +9,6 @@ method = None
 
 prayer = {"Fajr": "", "Dhuhr": "", "Asr": "", "Maghrib": "", "Isha": ""}
 
-fajr = ""
-dhuhr = ""
-asr = ""
-maghrib = ""
-isha = ""
-
 
 def get_response():
     url = "http://api.aladhan.com/v1/timingsByCity"
