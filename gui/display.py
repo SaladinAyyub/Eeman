@@ -89,71 +89,30 @@ class DisplayWindow(Adw.ApplicationWindow):
             orientation=Gtk.Orientation.VERTICAL,
         )
         self.clamp.set_child(self.box_wrapper)
-        self.fajr_box = Gtk.Box()
-        self.fajr_box.get_style_context().add_class("card")
-        self.box_wrapper.append(self.fajr_box)
 
-        self.fajr_label = Gtk.Label(
-            label=f"Fajr - {setup.fajr}",
-            margin_start=10,
-            margin_end=10,
-            margin_top=10,
-            margin_bottom=10,
-        )
-        self.fajr_box.append(self.fajr_label)
-
-        self.dhuhr_box = Gtk.Box()
-        self.dhuhr_box.get_style_context().add_class("card")
-        self.box_wrapper.append(self.dhuhr_box)
-
-        self.dhuhr_label = Gtk.Label(
-            label=f"Dhuhr - {setup.dhuhr}",
-            margin_start=10,
-            margin_end=10,
-            margin_top=10,
-            margin_bottom=10,
-        )
-        self.dhuhr_box.append(self.dhuhr_label)
-
-        self.asr_box = Gtk.Box()
-        self.asr_box.get_style_context().add_class("card")
-        self.box_wrapper.append(self.asr_box)
-
-        self.asr_label = Gtk.Label(
-            label=f"Asr - {setup.asr}",
-            margin_start=10,
-            margin_end=10,
-            margin_top=10,
-            margin_bottom=10,
-        )
-        self.asr_box.append(self.asr_label)
-
-        self.maghrib_box = Gtk.Box()
-        self.maghrib_box.get_style_context().add_class("card")
-        self.box_wrapper.append(self.maghrib_box)
-
-        self.maghrib_label = Gtk.Label(
-            label=f"Maghrib - {setup.maghrib}",
-            margin_start=10,
-            margin_end=10,
-            margin_top=10,
-            margin_bottom=10,
-        )
-        self.maghrib_box.append(self.maghrib_label)
-
-        self.isha_box = Gtk.Box()
-        self.isha_box.get_style_context().add_class("card")
-        self.box_wrapper.append(self.isha_box)
-
-        # Label inside sample box
-        self.isha_label = Gtk.Label(
-            label=f"Maghrib - {setup.isha}",
-            margin_start=10,
-            margin_end=10,
-            margin_top=10,
-            margin_bottom=10,
-        )
-        self.isha_box.append(self.isha_label)
+        self.prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"]
+        for self.prayer in self.prayers:
+            self.prayer_box = Gtk.Box()
+            self.prayer_box.get_style_context().add_class("card")
+            self.box_wrapper.append(self.prayer_box)
+            self.prayer_label = Gtk.Label(
+                label=self.prayer,
+                margin_start=10,
+                margin_end=10,
+                margin_top=10,
+                margin_bottom=10,
+            )
+            self.prayer_time_label = Gtk.Label(
+                label=setup.prayer[self.prayer],
+                margin_start=10,
+                margin_end=10,
+                margin_top=10,
+                margin_bottom=10,
+                halign=Gtk.Align.END,
+                hexpand=True,
+            )
+            self.prayer_box.append(self.prayer_label)
+            self.prayer_box.append(self.prayer_time_label)
 
     def on_sq_get_visible_child(self, widget, event):
         if self.sq_viewswitcher.get_visible_child() == self.wintitle:
