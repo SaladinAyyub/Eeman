@@ -94,7 +94,7 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.box_wrapper.append(self.date_label)
         self.box_wrapper.append(self.timezone_label)
 
-        self.prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"]
+        self.prayers = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"]
         for self.prayer in self.prayers:
             self.prayer_box = Gtk.Box()
             self.prayer_box.get_style_context().add_class("card")

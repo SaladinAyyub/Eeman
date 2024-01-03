@@ -9,7 +9,7 @@ method = None
 hanafi_school = 0
 
 
-prayer = {"Fajr": "", "Dhuhr": "", "Asr": "", "Maghrib": "", "Isha": ""}
+prayer = {"Fajr": "", "Sunrise": "", "Dhuhr": "", "Asr": "", "Maghrib": "", "Isha": ""}
 date = None
 timezone = None
 
@@ -28,6 +28,7 @@ def get_response():
         data = json.loads(response.text)
         global prayer
         prayer["Fajr"] = data["data"]["timings"]["Fajr"]
+        prayer["Sunrise"] = data["data"]["timings"]["Sunrise"]
         prayer["Dhuhr"] = data["data"]["timings"]["Dhuhr"]
         prayer["Asr"] = data["data"]["timings"]["Asr"]
         prayer["Maghrib"] = data["data"]["timings"]["Maghrib"]
