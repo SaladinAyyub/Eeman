@@ -89,6 +89,10 @@ class DisplayWindow(Adw.ApplicationWindow):
             orientation=Gtk.Orientation.VERTICAL,
         )
         self.clamp.set_child(self.box_wrapper)
+        self.date_label = Gtk.Label(label=setup.date)
+        self.timezone_label = Gtk.Label(label=setup.timezone)
+        self.box_wrapper.append(self.date_label)
+        self.box_wrapper.append(self.timezone_label)
 
         self.prayers = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"]
         for self.prayer in self.prayers:

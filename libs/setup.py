@@ -8,12 +8,15 @@ country = None
 method = None
 hanafi_school = 0
 
+
 prayer = {"Fajr": "", "Dhuhr": "", "Asr": "", "Maghrib": "", "Isha": ""}
+date = None
+timezone = None
 
 
 def get_response():
     url = "http://api.aladhan.com/v1/timingsByCity"
-    params = {"city": city, "country": country, "school": str(hanafi_school)}
+    params = {"city": city, "country": country, "school": hanafi_school}
     if method is not None:
         params["method"] = method
 
@@ -29,6 +32,11 @@ def get_response():
         prayer["Asr"] = data["data"]["timings"]["Asr"]
         prayer["Maghrib"] = data["data"]["timings"]["Maghrib"]
         prayer["Isha"] = data["data"]["timings"]["Isha"]
+
+        global date
+        global timezone
+        date = data["data"]["date"]["readable"]
+        timezone = data["data"]["meta"]["timezone"]
     else:
         print(f"Error: {response.status_code}")
 
