@@ -6,13 +6,14 @@ import json
 city = None
 country = None
 method = None
+hanafi_school = 0
 
 prayer = {"Fajr": "", "Dhuhr": "", "Asr": "", "Maghrib": "", "Isha": ""}
 
 
 def get_response():
     url = "http://api.aladhan.com/v1/timingsByCity"
-    params = {"city": city, "country": country}
+    params = {"city": city, "country": country, "school": str(hanafi_school)}
     if method is not None:
         params["method"] = method
 

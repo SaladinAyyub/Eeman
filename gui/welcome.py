@@ -81,6 +81,14 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         )
         self.listbox1.append(self.location_setting)
 
+        self.school_setting = Adw.ComboRow(title="School of thought")
+        self.school_mode = Gtk.StringList()
+        self.school_mode.append("Standard (Shafi'i, Maliki and Hanbali)")
+        self.school_mode.append("Hanafi")
+        self.school_setting.set_model(self.school_mode)
+        self.listbox1.append(self.school_setting)
+        self.school_setting.connect("notify::selected-item", self.on_school_set)
+
         self.method_setting = Adw.ComboRow(title="Calculation Method")
         self.method_mode = Gtk.StringList()
         self.method_mode.append("Automatic (Nearest)")
@@ -166,6 +174,12 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         if "Manual" in self.location_setting.get_selected_item().get_string():
             self.manual_location_country.set_sensitive(True)
             self.manual_location_city.set_sensitive(True)
+
+    def on_school_set(self, school_setting, event):
+        if "Standard" in self.school_setting.get_selected_item().get_string():
+            setup.hanafi_school = 0
+        if "Hanafi" in self.school_setting.get_selected_item().get_string():
+            setup.hanafi_school = 1
 
     def on_method_mode_set(self, method_setting, event):
         if "Automatic" in self.method_setting.get_selected_item().get_string():
