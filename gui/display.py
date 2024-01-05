@@ -1,6 +1,7 @@
 import gi
 import gui.welcome as welcome
 import libs.setup as setup
+import gui.preferences as pref
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -147,7 +148,9 @@ class DisplayWindow(Adw.ApplicationWindow):
             self.viewswitcherbar.set_reveal(False)
 
     def show_preferences(self, action, params):
-        print("open preferences")
+        self.pref_window = Adw.PreferencesWindow()
+        self.pref_window.add(pref.PreferencesPage())
+        self.pref_window.present()
 
     def show_about(self, action, params):
         print("open about")
