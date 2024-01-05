@@ -12,7 +12,7 @@ class DisplayWindow(Adw.ApplicationWindow):
         super().__init__(*args, **kwargs)
 
         self.set_name(welcome.app_name)
-        self.set_default_size(400, 500)
+        self.set_default_size(400, 600)
 
         self.box_main = Gtk.Box(
             orientation=Gtk.Orientation.VERTICAL,
