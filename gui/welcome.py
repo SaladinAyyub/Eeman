@@ -59,10 +59,6 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.carousel.append(self.page2)
         self.clamp = Adw.Clamp()
         self.page2.append(self.clamp)
-        self.listbox1 = Gtk.ListBox(selection_mode=Gtk.SelectionMode.NONE)
-        self.listbox1.get_style_context().add_class("boxed-list")
-        self.listbox2 = Gtk.ListBox(selection_mode=Gtk.SelectionMode.NONE)
-        self.listbox2.get_style_context().add_class("boxed-list")
         self.clamp.set_child(self.prfbox)
         self.prfbox.append(prf.PreferencesPage())
 

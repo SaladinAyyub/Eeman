@@ -4,7 +4,7 @@ import libs.setup as setup
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Gtk, Adw  # noqa E:402
+from gi.repository import Gtk, Adw, Gio  # noqa E:402
 
 
 class DisplayWindow(Adw.ApplicationWindow):
@@ -26,6 +26,28 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.hb = Adw.HeaderBar(centering_policy=Adw.CenteringPolicy.STRICT)
         self.box_main.append(self.hb)
 
+        # Create a menu
+        preferences_action = Gio.SimpleAction.new("pref", None)
+        about_action = Gio.SimpleAction.new("about", None)
+        donate_action = Gio.SimpleAction.new("donate", None)
+        preferences_action.connect("activate", self.show_preferences)
+        about_action.connect("activate", self.show_about)
+        donate_action.connect("activate", self.show_donate)
+        self.add_action(preferences_action)
+        self.add_action(about_action)
+        self.add_action(donate_action)
+        menu = Gio.Menu.new()
+        menu.append("Preferences", "win.pref")
+        menu.append("About", "win.about")
+        menu.append("Donate", "win.donate")
+        self.popover = Gtk.PopoverMenu()
+        self.popover.set_menu_model(menu)
+        self.hamburger = Gtk.MenuButton()
+        self.hamburger.set_popover(self.popover)
+        self.hamburger.set_icon_name("open-menu-symbolic")  # Give it a nice icon
+
+        # Add menu button to the header bar
+        self.hb.pack_end(self.hamburger)
         self.stack = Adw.ViewStack()
         self.box_main.append(self.stack)
 
@@ -123,3 +145,12 @@ class DisplayWindow(Adw.ApplicationWindow):
             self.viewswitcherbar.set_reveal(True)
         else:
             self.viewswitcherbar.set_reveal(False)
+
+    def show_preferences(self, action, params):
+        print("open preferences")
+
+    def show_about(self, action, params):
+        print("open about")
+
+    def show_donate(self, action, params):
+        print("open donate")
