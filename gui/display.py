@@ -153,7 +153,14 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.pref_window.present()
 
     def show_about(self, action, params):
-        print("open about")
+        self.about_window = Adw.AboutWindow()
+        self.about_window.present()
+        self.about_window.set_application_name("Eeman")
+        self.about_window.set_application_icon("sh.shuriken.Eeman")
+        self.about_window.set_developer_name("shuriken.sh")
+        self.about_window.set_version("1.0.0-alpha")
+        self.about_window.set_website("https://shuriken.sh")
+        self.about_window.set_license_type(Gtk.License.GPL_3_0)
 
     def show_donate(self, action, params):
         print("open donate")
