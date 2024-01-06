@@ -161,6 +161,11 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.about_window.set_version("1.0.0-alpha")
         self.about_window.set_website("https://shuriken.sh")
         self.about_window.set_license_type(Gtk.License.GPL_3_0)
+        self.about_window.set_comments(
+            "Eeman is an app to track prayer times, read the quran etc. "
+            "Its open source and written in Python and Gtk 4. "
+            "50 % of all donations go straight to recognized charities and are posted on the site."
+        )
 
     def show_donate(self, action, params):
         print("open donate")
