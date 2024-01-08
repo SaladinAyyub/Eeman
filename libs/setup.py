@@ -1,20 +1,22 @@
 import geocoder
 import requests
 import json
-
-
-city = None
-country = None
-method = None
-hanafi_school = 0
-
+from configparser import ConfigParser
 
 prayer = {"Fajr": "", "Sunrise": "", "Dhuhr": "", "Asr": "", "Maghrib": "", "Isha": ""}
 date = None
 timezone = None
 
+config = ConfigParser()
+
 
 def get_response():
+    global config
+    config.read("config.ini")
+    city = config["Prayer"]["city"]
+    country = config["Prayer"]["country"]
+    method = config["Prayer"]["method"]
+    hanafi_school = config["Prayer"]["hanafi_school"]
     url = "http://api.aladhan.com/v1/timingsByCity"
     params = {"city": city, "country": country, "school": hanafi_school}
     if method is not None:
@@ -44,7 +46,9 @@ def get_response():
 
 def get_location_auto():
     g = geocoder.ip("me")
-    global city
-    global country
-    city = g.city
-    country = g.country
+    global config
+    config.read("config.ini")
+    config.set("Prayer", "city", g.city)
+    config.set("Prayer", "country", g.country)
+    with open("config.ini", "w") as file:
+        config.write(file)

@@ -100,7 +100,6 @@ class MyApp(Adw.Application):
     def on_activate(self, app):
         self.win = WelcomeWindow(application=app)
         self.win.present()
-        setup.get_location_auto()
 
 
 app = MyApp(application_id="sh.shuriken.Eeman")
