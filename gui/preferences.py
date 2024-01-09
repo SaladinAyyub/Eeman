@@ -25,12 +25,6 @@ class PreferencesPage(Adw.PreferencesPage):
         self.location_mode.append("Automatic using IP")
         self.location_mode.append("Manual (City, Country)")
         self.location_setting.set_model(self.location_mode)
-        if config["Prayer"]["location_mode"] == "Automatic":
-            self.location_setting.set_selected(0)
-            self.manual_location_country.set_sensitive(False)
-            self.manual_location_city.set_sensitive(False)
-        elif config["Prayer"]["location_mode"] == "Manual":
-            self.location_setting.set_selected(1)
         self.location_setting.connect(
             "notify::selected-item", self.on_location_mode_set
         )
@@ -42,7 +36,6 @@ class PreferencesPage(Adw.PreferencesPage):
         self.school_mode.append("Hanafi")
         self.school_setting.set_model(self.school_mode)
         self.prfgr_setup.add(self.school_setting)
-        self.school_setting.set_selected(int(config["Prayer"]["hanafi_school"]))
         self.school_setting.connect("notify::selected-item", self.on_school_set)
 
         self.method_setting = Adw.ComboRow(title="Calculation Method")
@@ -83,17 +76,30 @@ class PreferencesPage(Adw.PreferencesPage):
         self.prfgr_setup.add(self.manual_location_country)
         self.prfgr_setup.add(self.manual_location_city)
         self.prfgr_setup.add(self.manual_method_setting)
-        self.manual_method_setting.set_sensitive(False)
 
         self.dark_theme_setting = Adw.ActionRow(title="Dark theme")
         self.dark_theme_switch = Gtk.Switch(valign=Gtk.Align.CENTER)
         self.dark_theme_setting.add_suffix(self.dark_theme_switch)
         self.dark_theme_switch.connect("state-set", self.set_theme)
         self.prfgr_appearance.add(self.dark_theme_setting)
+        self.set_initial_values()
+
+    def set_initial_values(self):
+        if config["Prayer"]["location_mode"] == "Automatic":
+            self.location_setting.set_selected(0)
+            self.manual_location_country.set_sensitive(False)
+            self.manual_location_city.set_sensitive(False)
+        elif config["Prayer"]["location_mode"] == "Manual":
+            self.location_setting.set_selected(1)
+        if config["Prayer"]["method_mode"] == "Automatic":
+            self.method_setting.set_selected(0)
+            self.manual_method_setting.set_sensitive(False)
+        elif config["Prayer"]["method_mode"] == "Manual":
+            self.method_setting.set_selected(1)
+        self.school_setting.set_selected(int(config["Prayer"]["hanafi_school"]))
 
     def on_location_mode_set(self, location_setting, event):
         if "Automatic" in self.location_setting.get_selected_item().get_string():
-            setup.get_location_auto()
             config.set("Prayer", "location_mode", "Automatic")
             self.manual_location_country.set_sensitive(False)
             self.manual_location_city.set_sensitive(False)
@@ -113,10 +119,12 @@ class PreferencesPage(Adw.PreferencesPage):
     def on_method_mode_set(self, method_setting, event):
         if "Automatic" in self.method_setting.get_selected_item().get_string():
             self.manual_method_setting.set_sensitive(False)
-            setup.method = None
+            config.set("Prayer", "method_mode", "Automatic")
         if "Manual" in self.method_setting.get_selected_item().get_string():
             self.manual_method_setting.set_sensitive(True)
+            config.set("Prayer", "method_mode", "Manual")
             self.set_manual_method()
+        self.update_config()
 
     def on_manual_method_set(self, manual_method, event):
         self.set_manual_method()

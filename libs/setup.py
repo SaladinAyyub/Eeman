@@ -13,10 +13,13 @@ config = ConfigParser()
 def get_response():
     global config
     config.read("config.ini")
-    city = config["Prayer"]["city"]
-    country = config["Prayer"]["country"]
     method = config["Prayer"]["method"]
     hanafi_school = config["Prayer"]["hanafi_school"]
+    location_mode = config["Prayer"]["location_mode"]
+    if location_mode == "Automatic":
+        get_location_auto()
+    city = config["Prayer"]["city"]
+    country = config["Prayer"]["country"]
     url = "http://api.aladhan.com/v1/timingsByCity"
     params = {"city": city, "country": country, "school": hanafi_school}
     if method is not None:
