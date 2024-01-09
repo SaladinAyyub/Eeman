@@ -2,12 +2,16 @@ import sys
 import gi
 import gui.display as display
 import gui.preferences as prf
+from configparser import ConfigParser
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 from gi.repository import Gtk, Adw  # noqa E:402
 
 app_name = "Eeman"
+
+config = ConfigParser()
+config.read("config.ini")
 
 
 class WelcomeWindow(Gtk.ApplicationWindow):
@@ -83,6 +87,8 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.done_button.connect("clicked", self.show_display)
 
     def show_display(self, done_button):
+        config.set("App", "first_run", "No")
+        update_config()
         display_window = display.DisplayWindow(application=app)
         display_window.present()
         self.close()
@@ -97,8 +103,18 @@ class MyApp(Adw.Application):
         self.connect("activate", self.on_activate)
 
     def on_activate(self, app):
-        self.win = WelcomeWindow(application=app)
-        self.win.present()
+        sm = Adw.StyleManager().get_default()
+        if config["Appearance"]["theme"] == "Dark":
+            sm.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+        elif config["Appearance"]["theme"] == "Light":
+            sm.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
+
+        if config["App"]["first_run"] == "Yes":
+            self.win = WelcomeWindow(application=app)
+            self.win.present()
+        elif config["App"]["first_run"] == "No":
+            display_window = display.DisplayWindow(application=app)
+            display_window.present()
 
 
 app = MyApp(application_id="sh.shuriken.Eeman")
@@ -106,3 +122,8 @@ app = MyApp(application_id="sh.shuriken.Eeman")
 
 def run():
     app.run(sys.argv)
+
+
+def update_config():
+    with open("config.ini", "w") as file:
+        config.write(file)

@@ -107,6 +107,7 @@ class PreferencesPage(Adw.PreferencesPage):
             self.manual_location_city.set_sensitive(False)
         elif config["Prayer"]["location_mode"] == "Manual":
             self.location_setting.set_selected(1)
+
         if config["Prayer"]["method_mode"] == "Automatic":
             self.method_setting.set_selected(0)
             self.manual_method_setting.set_sensitive(False)
@@ -116,6 +117,11 @@ class PreferencesPage(Adw.PreferencesPage):
         self.manual_method_setting.set_selected(
             self.manual_method_dict[config["Prayer"]["method"]]
         )
+
+        if config["Appearance"]["theme"] == "Dark":
+            self.dark_theme_switch.set_state(True)
+        elif config["Appearance"]["theme"] == "Light":
+            self.dark_theme_switch.set_state(False)
 
     def on_location_mode_set(self, location_setting, event):
         if "Automatic" in self.location_setting.get_selected_item().get_string():
@@ -169,8 +175,11 @@ class PreferencesPage(Adw.PreferencesPage):
             config.write(file)
 
     def set_theme(self, dark_theme_switch, state):
-        sm = Adw.StyleManager()
+        sm = Adw.StyleManager().get_default()
         if state:
+            config.set("Appearance", "theme", "Dark")
             sm.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
         else:
+            config.set("Appearance", "theme", "Light")
             sm.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
+        self.update_config()
