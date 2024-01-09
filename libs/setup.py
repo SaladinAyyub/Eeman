@@ -20,9 +20,10 @@ def get_response():
         get_location_auto()
     city = config["Prayer"]["city"]
     country = config["Prayer"]["country"]
+    method_mode = config["Prayer"]["method_mode"]
     url = "http://api.aladhan.com/v1/timingsByCity"
     params = {"city": city, "country": country, "school": hanafi_school}
-    if method is not None:
+    if method_mode == "Manual":
         params["method"] = method
 
     response = requests.get(

@@ -1,5 +1,4 @@
 import gi
-import libs.setup as setup
 
 from configparser import ConfigParser
 
@@ -48,6 +47,23 @@ class PreferencesPage(Adw.PreferencesPage):
         self.manual_location_city = Adw.EntryRow(title="City")
         self.manual_method_setting = Adw.ComboRow(title="Calculation Method")
         self.manual_method_mode = Gtk.StringList()
+        self.manual_method_dict = {
+            "1": 0,
+            "2": 1,
+            "3": 2,
+            "4": 3,
+            "5": 4,
+            "7": 5,
+            "8": 6,
+            "9": 7,
+            "10": 8,
+            "11": 9,
+            "12": 10,
+            "13": 11,
+            "14": 12,
+            "15": 13,
+            "16": 14,
+        }
         self.manual_method_mode.append("University of Islamic Sciences, Karachi")
         self.manual_method_mode.append("Islamic Society of North America")
         self.manual_method_mode.append("Muslim World League")
@@ -97,6 +113,9 @@ class PreferencesPage(Adw.PreferencesPage):
         elif config["Prayer"]["method_mode"] == "Manual":
             self.method_setting.set_selected(1)
         self.school_setting.set_selected(int(config["Prayer"]["hanafi_school"]))
+        self.manual_method_setting.set_selected(
+            self.manual_method_dict[config["Prayer"]["method"]]
+        )
 
     def on_location_mode_set(self, location_setting, event):
         if "Automatic" in self.location_setting.get_selected_item().get_string():
@@ -123,44 +142,19 @@ class PreferencesPage(Adw.PreferencesPage):
         if "Manual" in self.method_setting.get_selected_item().get_string():
             self.manual_method_setting.set_sensitive(True)
             config.set("Prayer", "method_mode", "Manual")
-            self.set_manual_method()
         self.update_config()
 
     def on_manual_method_set(self, manual_method, event):
-        self.set_manual_method()
-
-    def set_manual_method(self):
-        method_string = self.manual_method_setting.get_selected_item().get_string()
-        if "Karachi" in method_string:
-            setup.method = 1
-        if "North America" in method_string:
-            setup.method = 2
-        if "World League" in method_string:
-            setup.method = 3
-        if "Makkah" in method_string:
-            setup.method = 4
-        if "Egyptian" in method_string:
-            setup.method = 5
-        if "Tehran" in method_string:
-            setup.method = 7
-        if "Gulf" in method_string:
-            setup.method = 8
-        if "Kuwait" in method_string:
-            setup.method = 9
-        if "Qatar" in method_string:
-            setup.method = 10
-        if "Singapore" in method_string:
-            setup.method = 11
-        if "France" in method_string:
-            setup.method = 12
-        if "Turkey" in method_string:
-            setup.method = 13
-        if "Russia" in method_string:
-            setup.method = 14
-        if "Moonsighting" in method_string:
-            setup.method = 15
-        if "Dubai" in method_string:
-            setup.method = 16
+        config.set(
+            "Prayer",
+            "method",
+            list(self.manual_method_dict.keys())[
+                list(self.manual_method_dict.values()).index(
+                    self.manual_method_setting.get_selected()
+                )
+            ],
+        )
+        self.update_config()
 
     def on_manual_location_country(self, manual_location_country):
         config.set("Prayer", "country", self.manual_location_country.get_text())

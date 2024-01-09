@@ -1,7 +1,6 @@
 import sys
 import gi
 import gui.display as display
-import libs.setup as setup
 import gui.preferences as prf
 
 gi.require_version("Gtk", "4.0")
