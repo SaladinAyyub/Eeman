@@ -87,6 +87,7 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.done_button.connect("clicked", self.show_display)
 
     def show_display(self, done_button):
+        config.read("config.ini")
         config.set("App", "first_run", "No")
         update_config()
         display_window = display.DisplayWindow(application=app)
