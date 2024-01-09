@@ -120,8 +120,10 @@ class PreferencesPage(Adw.PreferencesPage):
 
         if config["Appearance"]["theme"] == "Dark":
             self.dark_theme_switch.set_state(True)
+            self.dark_theme_switch.set_active(True)
         elif config["Appearance"]["theme"] == "Light":
             self.dark_theme_switch.set_state(False)
+            self.dark_theme_switch.set_active(False)
 
     def on_location_mode_set(self, location_setting, event):
         if "Automatic" in self.location_setting.get_selected_item().get_string():
