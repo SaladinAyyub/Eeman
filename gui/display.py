@@ -141,6 +141,10 @@ class DisplayWindow(Adw.ApplicationWindow):
             self.prayer_box.append(self.prayer_label)
             self.prayer_box.append(self.prayer_time_label)
 
+        self.page2 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.stack.add_titled(self.page2, "page1", "Quran")
+        self.stack.get_page(self.page2).set_icon_name("accessories-dictionary-symbolic")
+
     def on_sq_get_visible_child(self, widget, event):
         if self.sq_viewswitcher.get_visible_child() == self.wintitle:
             self.viewswitcherbar.set_reveal(True)
