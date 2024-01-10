@@ -2,6 +2,7 @@ import sys
 import gi
 import gui.display as display
 import gui.preferences as prf
+import libs.setup as setup
 from configparser import ConfigParser
 
 gi.require_version("Gtk", "4.0")
@@ -87,9 +88,7 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.done_button.connect("clicked", self.show_display)
 
     def show_display(self, done_button):
-        config.read("config.ini")
-        config.set("App", "first_run", "No")
-        update_config()
+        setup.set_config("App", "first_run", "No")
         display_window = display.DisplayWindow(application=app)
         display_window.present()
         self.close()
@@ -123,8 +122,3 @@ app = MyApp(application_id="sh.shuriken.Eeman")
 
 def run():
     app.run(sys.argv)
-
-
-def update_config():
-    with open("config.ini", "w") as file:
-        config.write(file)

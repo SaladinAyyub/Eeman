@@ -1,6 +1,7 @@
 import gi
 
 from configparser import ConfigParser
+import libs.setup as setup
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -127,33 +128,30 @@ class PreferencesPage(Adw.PreferencesPage):
 
     def on_location_mode_set(self, location_setting, event):
         if "Automatic" in self.location_setting.get_selected_item().get_string():
-            config.set("Prayer", "location_mode", "Automatic")
+            setup.set_config("Prayer", "location_mode", "Automatic")
             self.manual_location_country.set_sensitive(False)
             self.manual_location_city.set_sensitive(False)
         if "Manual" in self.location_setting.get_selected_item().get_string():
-            config.set("Prayer", "location_mode", "Manual")
+            setup.set_config("Prayer", "location_mode", "Manual")
             self.manual_location_country.set_sensitive(True)
             self.manual_location_city.set_sensitive(True)
-        self.update_config()
 
     def on_school_set(self, school_setting, event):
         if "Standard" in self.school_setting.get_selected_item().get_string():
-            config.set("Prayer", "hanafi_school", "0")
+            setup.set_config("Prayer", "hanafi_school", "0")
         if "Hanafi" in self.school_setting.get_selected_item().get_string():
-            config.set("Prayer", "hanafi_school", "1")
-        self.update_config()
+            setup.set_config("Prayer", "hanafi_school", "1")
 
     def on_method_mode_set(self, method_setting, event):
         if "Automatic" in self.method_setting.get_selected_item().get_string():
             self.manual_method_setting.set_sensitive(False)
-            config.set("Prayer", "method_mode", "Automatic")
+            setup.set_config("Prayer", "method_mode", "Automatic")
         if "Manual" in self.method_setting.get_selected_item().get_string():
             self.manual_method_setting.set_sensitive(True)
-            config.set("Prayer", "method_mode", "Manual")
-        self.update_config()
+            setup.set_config("Prayer", "method_mode", "Manual")
 
     def on_manual_method_set(self, manual_method, event):
-        config.set(
+        setup.set_config(
             "Prayer",
             "method",
             list(self.manual_method_dict.keys())[
@@ -162,26 +160,18 @@ class PreferencesPage(Adw.PreferencesPage):
                 )
             ],
         )
-        self.update_config()
 
     def on_manual_location_country(self, manual_location_country):
-        config.set("Prayer", "country", self.manual_location_country.get_text())
-        self.update_config()
+        setup.set_config("Prayer", "country", self.manual_location_country.get_text())
 
     def on_manual_location_city(self, manual_location_city):
-        config.set("Prayer", "city", self.manual_location_city.get_text())
-        self.update_config()
-
-    def update_config(self):
-        with open("config.ini", "w") as file:
-            config.write(file)
+        setup.set_config("Prayer", "city", self.manual_location_city.get_text())
 
     def set_theme(self, dark_theme_switch, state):
         sm = Adw.StyleManager().get_default()
         if state:
-            config.set("Appearance", "theme", "Dark")
+            setup.set_config("Appearance", "theme", "Dark")
             sm.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
         else:
-            config.set("Appearance", "theme", "Light")
+            setup.set_config("Appearance", "theme", "Light")
             sm.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
-        self.update_config()

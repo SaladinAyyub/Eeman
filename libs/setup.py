@@ -18,6 +18,7 @@ def get_response():
     location_mode = config["Prayer"]["location_mode"]
     if location_mode == "Automatic":
         get_location_auto()
+        config.read("config.ini")
     city = config["Prayer"]["city"]
     country = config["Prayer"]["country"]
     method_mode = config["Prayer"]["method_mode"]
@@ -50,9 +51,13 @@ def get_response():
 
 def get_location_auto():
     g = geocoder.ip("me")
+    set_config("Prayer", "city", g.city)
+    set_config("Prayer", "country", g.country)
+
+
+def set_config(section, option, value):
     global config
     config.read("config.ini")
-    config.set("Prayer", "city", g.city)
-    config.set("Prayer", "country", g.country)
+    config.set(section, option, value)
     with open("config.ini", "w") as file:
         config.write(file)
