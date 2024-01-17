@@ -141,9 +141,18 @@ class DisplayWindow(Adw.ApplicationWindow):
             self.prayer_box.append(self.prayer_label)
             self.prayer_box.append(self.prayer_time_label)
 
-        self.page2 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.stack.add_titled(self.page2, "page1", "Quran")
-        self.stack.get_page(self.page2).set_icon_name("accessories-dictionary-symbolic")
+        self.tb = Adw.ToolbarView()
+        self.actionbar = Gtk.ActionBar()
+        self.tb.add_top_bar(self.actionbar)
+        self.stack.add_titled(self.tb, "page1", "Quran")
+        self.stack.get_page(self.tb).set_icon_name("accessories-dictionary-symbolic")
+        self.select_surah = Gtk.DropDown()
+        self.actionbar.pack_start(self.select_surah)
+        self.surah_list = Gtk.StringList()
+        for surah in range(1, 115):
+            data = setup.get_response_quran(surah)
+            self.surah_list.append(setup.get_quran_surah_name_english(data))
+        self.select_surah.set_model(self.surah_list)
 
     def on_sq_get_visible_child(self, widget, event):
         if self.sq_viewswitcher.get_visible_child() == self.wintitle:
