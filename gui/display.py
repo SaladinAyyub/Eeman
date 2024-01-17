@@ -149,12 +149,40 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.select_surah = Gtk.DropDown()
         self.actionbar.pack_start(self.select_surah)
         self.surah_list = Gtk.StringList()
-        surah_data = setup.get_response_quran_surah_data()
+        self.surah_data = setup.get_response_quran_surah_data()
         for surah in range(1, 115):
             self.surah_list.append(
-                setup.get_quran_surah_name_english(surah, surah_data)
+                "%s. %s"
+                % (surah, setup.get_quran_surah_name_english(surah, self.surah_data))
             )
         self.select_surah.set_model(self.surah_list)
+        self.quran_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.tb.set_content(self.quran_box)
+        self.surah_heading_arabic = Gtk.Label(
+            label=setup.get_quran_surah_name_arabic(
+                self.select_surah.get_selected() + 1, self.surah_data
+            )
+        )
+        self.surah_heading_english = Gtk.Label(
+            label=setup.get_quran_surah_name_english(
+                self.select_surah.get_selected() + 1, self.surah_data
+            )
+        )
+        self.quran_box.append(self.surah_heading_arabic)
+        self.quran_box.append(self.surah_heading_english)
+        self.select_surah.connect("notify::selected-item", self.on_surah_select)
+
+    def on_surah_select(self, select_surah, event):
+        self.surah_heading_arabic.set_label(
+            setup.get_quran_surah_name_arabic(
+                self.select_surah.get_selected() + 1, self.surah_data
+            )
+        )
+        self.surah_heading_english.set_label(
+            setup.get_quran_surah_name_english(
+                self.select_surah.get_selected() + 1, self.surah_data
+            )
+        )
 
     def on_sq_get_visible_child(self, widget, event):
         if self.sq_viewswitcher.get_visible_child() == self.wintitle:
