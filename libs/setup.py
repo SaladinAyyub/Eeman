@@ -63,14 +63,13 @@ def set_config(section, option, value):
         config.write(file)
 
 
-def get_response_quran(surah):
-    edition = "en.sahih"
-    url = f"http://api.alquran.cloud/v1/surah/{surah}/{edition}"
+def get_response_quran_surah_data():
+    url = "http://api.alquran.cloud/v1/surah"
     response = requests.get(url)
     if response.status_code == 200:
         data = json.loads(response.text)
         return data
 
 
-def get_quran_surah_name_english(data):
-    return data["data"]["englishName"]
+def get_quran_surah_name_english(surah, data):
+    return data["data"][surah - 1]["englishName"]

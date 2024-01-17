@@ -149,9 +149,11 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.select_surah = Gtk.DropDown()
         self.actionbar.pack_start(self.select_surah)
         self.surah_list = Gtk.StringList()
+        surah_data = setup.get_response_quran_surah_data()
         for surah in range(1, 115):
-            data = setup.get_response_quran(surah)
-            self.surah_list.append(setup.get_quran_surah_name_english(data))
+            self.surah_list.append(
+                setup.get_quran_surah_name_english(surah, surah_data)
+            )
         self.select_surah.set_model(self.surah_list)
 
     def on_sq_get_visible_child(self, widget, event):
