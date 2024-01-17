@@ -64,7 +64,7 @@ def set_config(section, option, value):
 
 
 def get_response_quran_surah_data():
-    url = "http://api.alquran.cloud/v1/surah"
+    url = "https://api.alquran.cloud/v1/surah"
     response = requests.get(url)
     if response.status_code == 200:
         data = json.loads(response.text)
