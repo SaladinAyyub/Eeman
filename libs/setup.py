@@ -72,4 +72,4 @@ def get_response_quran_surah_data():
 
 
 def get_quran_surah_name_english(surah, data):
-    return data["data"][surah - 1]["englishName"]
+    return "%s . %s" % (surah, data["data"][surah - 1]["englishName"])
