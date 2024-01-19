@@ -6,6 +6,7 @@ from configparser import ConfigParser
 prayer = {"Fajr": "", "Sunrise": "", "Dhuhr": "", "Asr": "", "Maghrib": "", "Isha": ""}
 date = None
 timezone = None
+hijri_date = None
 
 config = ConfigParser()
 
@@ -43,8 +44,15 @@ def get_response():
 
         global date
         global timezone
+        global hijri_date
         date = data["data"]["date"]["readable"]
         timezone = data["data"]["meta"]["timezone"]
+        hijri_date = "%s %s, %s %s" % (
+            data["data"]["date"]["hijri"]["month"]["en"],
+            data["data"]["date"]["hijri"]["month"]["number"],
+            data["data"]["date"]["hijri"]["year"],
+            data["data"]["date"]["hijri"]["designation"]["abbreviated"],
+        )
     else:
         print(f"Error: {response.status_code}")
 

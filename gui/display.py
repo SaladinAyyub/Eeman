@@ -113,9 +113,10 @@ class DisplayWindow(Adw.ApplicationWindow):
         )
         self.clamp.set_child(self.box_wrapper)
         self.date_label = Gtk.Label(label=setup.date)
-        self.timezone_label = Gtk.Label(label=setup.timezone)
+        self.timezone_label = Gtk.Label(label=setup.timezone, margin_top=50)
+        self.hijri_date_label = Gtk.Label(label=setup.hijri_date, margin_bottom=50)
         self.box_wrapper.append(self.date_label)
-        self.box_wrapper.append(self.timezone_label)
+        self.box_wrapper.append(self.hijri_date_label)
 
         self.prayers = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"]
         for self.prayer in self.prayers:
@@ -140,6 +141,7 @@ class DisplayWindow(Adw.ApplicationWindow):
             )
             self.prayer_box.append(self.prayer_label)
             self.prayer_box.append(self.prayer_time_label)
+        self.box_wrapper.append(self.timezone_label)
 
         self.tb = Adw.ToolbarView()
         self.actionbar = Gtk.ActionBar()
