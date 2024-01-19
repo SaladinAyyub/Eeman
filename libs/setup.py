@@ -77,3 +77,27 @@ def get_quran_surah_name_english(surah, data):
 
 def get_quran_surah_name_arabic(surah, data):
     return data["data"][surah - 1]["name"]
+
+
+def get_number_of_ayahs(surah, data):
+    return data["data"][surah - 1]["numberOfAyahs"]
+
+
+def get_response_quran_ayah_data_english(surah):
+    url = f"https://api.alquran.cloud/v1/surah/{surah}/en.sahih"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = json.loads(response.text)
+        return data
+
+
+def get_response_quran_ayah_data_arabic(surah):
+    url = f"https://api.alquran.cloud/v1/surah/{surah}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = json.loads(response.text)
+        return data
+
+
+def get_quran_ayah_text(data, ayah):
+    return data["data"]["ayahs"][ayah - 1]["text"]

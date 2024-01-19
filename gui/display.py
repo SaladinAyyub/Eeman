@@ -13,7 +13,7 @@ class DisplayWindow(Adw.ApplicationWindow):
         super().__init__(*args, **kwargs)
 
         self.set_name(welcome.app_name)
-        self.set_default_size(400, 600)
+        self.set_default_size(500, 600)
 
         self.box_main = Gtk.Box(
             orientation=Gtk.Orientation.VERTICAL,
@@ -156,23 +156,27 @@ class DisplayWindow(Adw.ApplicationWindow):
                 % (surah, setup.get_quran_surah_name_english(surah, self.surah_data))
             )
         self.select_surah.set_model(self.surah_list)
-        self.quran_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
-        self.tb.set_content(self.quran_box)
-        self.surah_heading_arabic = Gtk.Label(
-            label=setup.get_quran_surah_name_arabic(
-                self.select_surah.get_selected() + 1, self.surah_data
-            )
+        self.quran_box = Gtk.Box(
+            orientation=Gtk.Orientation.VERTICAL, spacing=20, vexpand=True
         )
-        self.surah_heading_english = Gtk.Label(
-            label=setup.get_quran_surah_name_english(
-                self.select_surah.get_selected() + 1, self.surah_data
-            )
-        )
-        self.quran_box.append(self.surah_heading_arabic)
-        self.quran_box.append(self.surah_heading_english)
+        self.scrolled_window = Gtk.ScrolledWindow()
+        self.scrolled_window.set_child(self.quran_box)
+        self.tb.set_content(self.scrolled_window)
+        self.surah_heading_arabic = Gtk.Label()
+        self.surah_heading_english = Gtk.Label()
+        self.surah_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.surah_box.append(self.surah_heading_arabic)
+        self.surah_box.append(self.surah_heading_english)
+        self.ayah_parent_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.quran_box.append(self.surah_box)
+        self.quran_box.append(self.ayah_parent_box)
+        self.on_surah_select(self.select_surah, self.select_surah.activate)
         self.select_surah.connect("notify::selected-item", self.on_surah_select)
 
     def on_surah_select(self, select_surah, event):
+        self.quran_box.remove(self.ayah_parent_box)
+        self.ayah_parent_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+        self.quran_box.append(self.ayah_parent_box)
         self.surah_heading_arabic.set_label(
             setup.get_quran_surah_name_arabic(
                 self.select_surah.get_selected() + 1, self.surah_data
@@ -183,6 +187,29 @@ class DisplayWindow(Adw.ApplicationWindow):
                 self.select_surah.get_selected() + 1, self.surah_data
             )
         )
+        total_ayah = setup.get_number_of_ayahs(
+            self.select_surah.get_selected() + 1, self.surah_data
+        )
+        ayah_data_english = setup.get_response_quran_ayah_data_english(
+            self.select_surah.get_selected() + 1
+        )
+        ayah_data_arabic = setup.get_response_quran_ayah_data_arabic(
+            self.select_surah.get_selected() + 1
+        )
+        for ayah in range(1, total_ayah + 1):
+            ayah_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
+            ayah_box.get_style_context().add_class("card")
+            ayah_text_english = setup.get_quran_ayah_text(ayah_data_english, ayah)
+            ayah_text_arabic = setup.get_quran_ayah_text(ayah_data_arabic, ayah)
+            ayah_english_label = Gtk.Label(
+                label="%s. %s" % (ayah, ayah_text_english), wrap=True
+            )
+            ayah_arabic_label = Gtk.Label(
+                label=ayah_text_arabic, wrap=True, hexpand=True
+            )
+            ayah_box.append(ayah_english_label)
+            ayah_box.append(ayah_arabic_label)
+            self.ayah_parent_box.append(ayah_box)
 
     def on_sq_get_visible_child(self, widget, event):
         if self.sq_viewswitcher.get_visible_child() == self.wintitle:
