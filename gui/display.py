@@ -157,10 +157,18 @@ class DisplayWindow(Adw.ApplicationWindow):
             )
         self.select_surah.set_model(self.surah_list)
         self.quran_box = Gtk.Box(
-            orientation=Gtk.Orientation.VERTICAL, spacing=20, vexpand=True
+            orientation=Gtk.Orientation.VERTICAL,
+            spacing=20,
+            vexpand=True,
+            margin_start=10,
+            margin_end=10,
+            margin_top=10,
+            margin_bottom=10,
         )
+        self.clamp2 = Adw.Clamp()
         self.scrolled_window = Gtk.ScrolledWindow()
-        self.scrolled_window.set_child(self.quran_box)
+        self.scrolled_window.set_child(self.clamp2)
+        self.clamp2.set_child(self.quran_box)
         self.tb.set_content(self.scrolled_window)
         self.surah_heading_arabic = Gtk.Label()
         self.surah_heading_english = Gtk.Label()
@@ -202,10 +210,21 @@ class DisplayWindow(Adw.ApplicationWindow):
             ayah_text_english = setup.get_quran_ayah_text(ayah_data_english, ayah)
             ayah_text_arabic = setup.get_quran_ayah_text(ayah_data_arabic, ayah)
             ayah_english_label = Gtk.Label(
-                label="%s. %s" % (ayah, ayah_text_english), wrap=True
+                label="%s. %s" % (ayah, ayah_text_english),
+                wrap=True,
+                margin_start=10,
+                margin_end=10,
+                margin_top=10,
+                margin_bottom=10,
             )
             ayah_arabic_label = Gtk.Label(
-                label=ayah_text_arabic, wrap=True, hexpand=True
+                label=ayah_text_arabic,
+                wrap=True,
+                hexpand=True,
+                margin_start=10,
+                margin_end=10,
+                margin_top=10,
+                margin_bottom=10,
             )
             ayah_box.append(ayah_english_label)
             ayah_box.append(ayah_arabic_label)
