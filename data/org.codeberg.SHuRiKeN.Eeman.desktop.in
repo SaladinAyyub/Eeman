@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=eeman
+Exec=eeman
+Icon=org.codeberg.SHuRiKeN.Eeman
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

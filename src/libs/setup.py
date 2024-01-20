@@ -1,26 +1,23 @@
 import json
-from configparser import ConfigParser
 
 import geocoder
 import requests
+from eeman.configuration import config, config_path, get_conf
 
 prayer = {"Fajr": "", "Sunrise": "", "Dhuhr": "", "Asr": "", "Maghrib": "", "Isha": ""}
 date = None
 timezone = None
 hijri_date = None
 
-config = ConfigParser()
-
 
 def get_response():
-    global config
-    config.read("config.ini")
+    get_conf()
     method = config["Prayer"]["method"]
     hanafi_school = config["Prayer"]["hanafi_school"]
     location_mode = config["Prayer"]["location_mode"]
     if location_mode == "Automatic":
         get_location_auto()
-        config.read("config.ini")
+        get_conf()
     city = config["Prayer"]["city"]
     country = config["Prayer"]["country"]
     method_mode = config["Prayer"]["method_mode"]
@@ -65,10 +62,9 @@ def get_location_auto():
 
 
 def set_config(section, option, value):
-    global config
-    config.read("config.ini")
+    get_conf()
     config.set(section, option, value)
-    with open("config.ini", "w") as file:
+    with open(config_path, "w") as file:
         config.write(file)
 
 

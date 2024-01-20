@@ -1,12 +1,12 @@
 import gi
+from eeman.libs import setup
 
-import gui.preferences as pref
-import gui.welcome as welcome
-import libs.setup as setup
+from . import preferences as pref
+from . import welcome
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Gtk, Adw, Gio  # noqa E:402
+from gi.repository import Adw, Gio, Gtk  # noqa E:402
 
 
 class DisplayWindow(Adw.ApplicationWindow):

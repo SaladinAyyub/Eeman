@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="eeman">
+	<schema id="org.codeberg.SHuRiKeN.Eeman" path="/org/codeberg/SHuRiKeN/Eeman/">
+	</schema>
+</schemalist>
