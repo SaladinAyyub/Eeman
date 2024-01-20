@@ -1,12 +1,10 @@
-from configparser import ConfigParser
-
 import gi
-
-import libs.setup as setup
+from eeman.libs import setup
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Gtk, Adw  # noqa E:402
+from eeman.configuration import config
+from gi.repository import Adw, Gtk  # noqa E:402
 
 
 class PreferencesPage(Adw.PreferencesPage):
@@ -99,8 +97,6 @@ class PreferencesPage(Adw.PreferencesPage):
         self.set_initial_values()
 
     def set_initial_values(self):
-        config = ConfigParser()
-        config.read("config.ini")
         if config["Prayer"]["location_mode"] == "Automatic":
             self.location_setting.set_selected(0)
             self.manual_location_country.set_sensitive(False)

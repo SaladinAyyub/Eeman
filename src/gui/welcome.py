@@ -1,20 +1,17 @@
 import sys
-from configparser import ConfigParser
 
 import gi
+from eeman.configuration import config, get_conf
+from eeman.libs import setup as setup
 
-import gui.display as display
-import gui.preferences as prf
-import libs.setup as setup
+from . import display
+from . import preferences as prf
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Gtk, Adw  # noqa E:402
+from gi.repository import Adw, Gtk  # noqa E:402
 
 app_name = "Eeman"
-
-config = ConfigParser()
-config.read("config.ini")
 
 
 class WelcomeWindow(Gtk.ApplicationWindow):
@@ -105,6 +102,7 @@ class MyApp(Adw.Application):
         self.connect("activate", self.on_activate)
 
     def on_activate(self, app):
+        get_conf()
         sm = Adw.StyleManager().get_default()
         if config["Appearance"]["theme"] == "Dark":
             sm.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
