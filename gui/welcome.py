@@ -1,9 +1,11 @@
 import sys
+from configparser import ConfigParser
+
 import gi
+
 import gui.display as display
 import gui.preferences as prf
 import libs.setup as setup
-from configparser import ConfigParser
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")

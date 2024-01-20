@@ -1,6 +1,7 @@
+from configparser import ConfigParser
+
 import gi
 
-from configparser import ConfigParser
 import libs.setup as setup
 
 gi.require_version("Gtk", "4.0")

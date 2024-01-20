@@ -1,7 +1,8 @@
 import gi
+
+import gui.preferences as pref
 import gui.welcome as welcome
 import libs.setup as setup
-import gui.preferences as pref
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")

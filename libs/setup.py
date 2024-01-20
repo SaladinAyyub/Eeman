@@ -1,7 +1,8 @@
-import geocoder
-import requests
 import json
 from configparser import ConfigParser
+
+import geocoder
+import requests
 
 prayer = {"Fajr": "", "Sunrise": "", "Dhuhr": "", "Asr": "", "Maghrib": "", "Isha": ""}
 date = None
