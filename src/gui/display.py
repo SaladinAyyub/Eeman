@@ -148,7 +148,7 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.actionbar = Gtk.ActionBar()
         self.tb.add_top_bar(self.actionbar)
         self.stack.add_titled(self.tb, "page1", "Quran")
-        self.stack.get_page(self.tb).set_icon_name("accessories-dictionary-symbolic")
+        self.stack.get_page(self.tb).set_icon_name("open-book-symbolic")
         self.select_surah = Gtk.DropDown()
         self.actionbar.pack_start(self.select_surah)
         self.surah_list = Gtk.StringList()

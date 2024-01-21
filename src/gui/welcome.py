@@ -42,7 +42,7 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.page1 = Adw.StatusPage(
             title="As-salamu alaykum !",
             description="we will run through the setup process now...",
-            icon_name="preferences-desktop-screensaver-symbolic",
+            icon_name="sh.shuriken.Eeman",
             hexpand=True,
             vexpand=True,
         )
@@ -72,7 +72,7 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         self.page3 = Adw.StatusPage(
             title="All set",
             description="Eeman app is now all setup, you can always change settings later",
-            icon_name="preferences-desktop-screensaver-symbolic",
+            icon_name="sh.shuriken.Eeman",
             hexpand=True,
             vexpand=True,
         )

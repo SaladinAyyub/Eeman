@@ -47,7 +47,7 @@ def get_response():
         timezone = data["data"]["meta"]["timezone"]
         hijri_date = "%s %s, %s %s" % (
             data["data"]["date"]["hijri"]["month"]["en"],
-            data["data"]["date"]["hijri"]["month"]["number"],
+            data["data"]["date"]["hijri"]["day"],
             data["data"]["date"]["hijri"]["year"],
             data["data"]["date"]["hijri"]["designation"]["abbreviated"],
         )

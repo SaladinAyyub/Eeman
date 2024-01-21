@@ -3,8 +3,4 @@
   <gresource prefix="/sh/shuriken/Eeman">
     <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
   </gresource>
-  <gresource prefix="/sh/shuriken/Eeman/data/icons/hicolor/scalable/actions">
-    <file alias="alarm-symbolic.svg">../data/icons/hicolor/scalable/actions/alarm-symbolic.svg</file>
-    <file preprocess="xml-stripblanks">../data/icons/hicolor/scalable/actions/alarm-symbolic.svg</file>
-  </gresource>
 </gresources>
