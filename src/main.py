@@ -1,6 +1,6 @@
 # main.py
 #
-# Copyright 2024 kramo
+# Copyright 2024 SHuRiKeN(shuriken.sh)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,10 +55,10 @@ class EemanApplication(Adw.Application):
             transient_for=self.props.active_window,
             application_name="eeman",
             application_icon="org.codeberg.SHuRiKeN.Eeman",
-            developer_name="kramo",
+            developer_name="shuriken",
             version="0.1.0",
-            developers=["kramo"],
-            copyright="© 2024 kramo",
+            developers=["shuriken"],
+            copyright="© 2024 shuriken",
         )
         about.present()
 
