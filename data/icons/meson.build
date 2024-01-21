@@ -1,4 +1,4 @@
-application_id = 'org.codeberg.SHuRiKeN.Eeman'
+application_id = 'sh.shuriken.Eeman'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

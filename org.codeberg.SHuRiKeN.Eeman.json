@@ -1,5 +1,5 @@
 {
-    "id" : "org.codeberg.SHuRiKeN.Eeman",
+    "id" : "sh.shuriken.Eeman",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "45",
     "sdk" : "org.gnome.Sdk",

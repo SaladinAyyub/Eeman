@@ -122,3 +122,4 @@ app = MyApp(application_id="sh.shuriken.Eeman")
 
 def run():
     app.run(sys.argv)
+

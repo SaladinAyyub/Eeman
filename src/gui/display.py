@@ -99,7 +99,7 @@ class DisplayWindow(Adw.ApplicationWindow):
         # Page 1
         self.page1 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.stack.add_titled(self.page1, "page0", "Prayer")
-        self.stack.get_page(self.page1).set_icon_name("emoji-recent-symbolic")
+        self.stack.get_page(self.page1).set_icon_name("alarm-symbolic")
         setup.get_response()
         self.clamp = Adw.Clamp()
         self.page1.append(self.clamp)

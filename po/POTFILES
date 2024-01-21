@@ -1,5 +1,5 @@
-data/org.codeberg.SHuRiKeN.Eeman.desktop.in
-data/org.codeberg.SHuRiKeN.Eeman.metainfo.xml.in
-data/org.codeberg.SHuRiKeN.Eeman.gschema.xml
+data/sh.shuriken.Eeman.desktop.in
+data/sh.shuriken.Eeman.metainfo.xml.in
+data/sh.shuriken.Eeman.gschema.xml
 src/main.py
 src/window.py
