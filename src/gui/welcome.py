@@ -71,7 +71,7 @@ class WelcomeWindow(Gtk.ApplicationWindow):
         )
         self.page3 = Adw.StatusPage(
             title="All set",
-            description="Eeman app is now all setup, you can always change settings later at any time.",
+            description="Eeman app is now all setup, you can change settings later at any time.",
             icon_name="sh.shuriken.Eeman",
             hexpand=True,
             vexpand=True,
@@ -122,4 +122,3 @@ app = MyApp(application_id="sh.shuriken.Eeman")
 
 def run():
     app.run(sys.argv)
-
