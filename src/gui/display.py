@@ -1,4 +1,5 @@
 import gi
+from datetime import datetime
 from eeman.libs import setup
 from eeman.configuration import config
 
@@ -8,7 +9,7 @@ from . import welcome
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("Notify", "0.7")
-from gi.repository import Adw, Gio, Gtk, Notify  # noqa E:402
+from gi.repository import Adw, Gio, Gtk, Notify, GLib  # noqa E:402
 
 Notify.init("Eeman")
 
@@ -156,6 +157,13 @@ class DisplayWindow(Adw.ApplicationWindow):
             self.prayer_box.append(self.prayer_notify_button)
             self.prayer_box.append(self.prayer_time_label)
             self.prayer_notify_button.connect("clicked", self.set_notify, self.prayer)
+            GLib.timeout_add_seconds(
+                1,
+                self.check_time,
+                self.prayer,
+                setup.prayer[self.prayer],
+                self.prayer_notify_button,
+            )
         self.box_wrapper.append(self.timezone_label)
 
         self.tb = Adw.ToolbarView()
@@ -197,6 +205,15 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.quran_box.append(self.ayah_parent_box)
         self.on_surah_select(self.select_surah, self.select_surah.activate)
         self.select_surah.connect("notify::selected-item", self.on_surah_select)
+
+    def check_time(self, prayer, prayer_time, notify_btn):
+        current_time = datetime.now().strftime("%H:%M")
+        if (
+            current_time == prayer_time
+            and notify_btn.get_icon_name() == "bell-outline-symbolic"
+        ):
+            Notify.Notification.new("Its time for %s!" % (prayer)).show()
+        GLib.timeout_add_seconds(1, self.check_time, prayer, prayer_time, notify_btn)
 
     def set_notify(self, notify_btn, prayer):
         if notify_btn.get_icon_name() == "bell-outline-symbolic":
