@@ -1,12 +1,16 @@
 import gi
 from eeman.libs import setup
+from eeman.configuration import config
 
 from . import preferences as pref
 from . import welcome
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Adw, Gio, Gtk  # noqa E:402
+gi.require_version("Notify", "0.7")
+from gi.repository import Adw, Gio, Gtk, Notify  # noqa E:402
+
+Notify.init("Eeman")
 
 
 class DisplayWindow(Adw.ApplicationWindow):
@@ -138,10 +142,20 @@ class DisplayWindow(Adw.ApplicationWindow):
                 margin_top=10,
                 margin_bottom=10,
                 halign=Gtk.Align.END,
-                hexpand=True,
             )
+            self.prayer_notify_button = Gtk.Button(
+                halign=Gtk.Align.END,
+                hexpand=True,
+                has_frame=False,
+            )
+            if config["Prayer"]["%s_notify" % (self.prayer)] == "Yes":
+                self.prayer_notify_button.set_icon_name("bell-outline-symbolic")
+            else:
+                self.prayer_notify_button.set_icon_name("bell-outline-none-symbolic")
             self.prayer_box.append(self.prayer_label)
+            self.prayer_box.append(self.prayer_notify_button)
             self.prayer_box.append(self.prayer_time_label)
+            self.prayer_notify_button.connect("clicked", self.set_notify, self.prayer)
         self.box_wrapper.append(self.timezone_label)
 
         self.tb = Adw.ToolbarView()
@@ -183,6 +197,14 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.quran_box.append(self.ayah_parent_box)
         self.on_surah_select(self.select_surah, self.select_surah.activate)
         self.select_surah.connect("notify::selected-item", self.on_surah_select)
+
+    def set_notify(self, notify_btn, prayer):
+        if notify_btn.get_icon_name() == "bell-outline-symbolic":
+            notify_btn.set_icon_name("bell-outline-none-symbolic")
+            config["Prayer"]["%s_notify" % (prayer)] == "No"
+        elif notify_btn.get_icon_name() == "bell-outline-none-symbolic":
+            notify_btn.set_icon_name("bell-outline-symbolic")
+            config["Prayer"]["%s_notify" % (prayer)] == "Yes"
 
     def on_surah_select(self, select_surah, event):
         self.quran_box.remove(self.ayah_parent_box)

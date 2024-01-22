@@ -1,9 +1,9 @@
 import gi
 from eeman.libs import setup
+from eeman.configuration import config
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from eeman.configuration import config
 from gi.repository import Adw, Gtk  # noqa E:402
 
 
