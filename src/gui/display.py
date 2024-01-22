@@ -161,7 +161,7 @@ class DisplayWindow(Adw.ApplicationWindow):
                 1,
                 self.check_time,
                 self.prayer,
-                setup.prayer[self.prayer],
+                self.prayer_time_label.get_label(),
                 self.prayer_notify_button,
             )
         self.box_wrapper.append(self.timezone_label)
