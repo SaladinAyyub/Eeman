@@ -213,7 +213,13 @@ class DisplayWindow(Adw.ApplicationWindow):
             and notify_btn.get_icon_name() == "bell-outline-symbolic"
         ):
             Notify.Notification.new("Its time for %s!" % (prayer)).show()
-        GLib.timeout_add_seconds(1, self.check_time, prayer, prayer_time, notify_btn)
+            GLib.timeout_add_seconds(
+                60, self.check_time, prayer, prayer_time, notify_btn
+            )
+        else:
+            GLib.timeout_add_seconds(
+                1, self.check_time, prayer, prayer_time, notify_btn
+            )
 
     def set_notify(self, notify_btn, prayer):
         if notify_btn.get_icon_name() == "bell-outline-symbolic":
