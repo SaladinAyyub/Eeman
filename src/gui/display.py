@@ -9,7 +9,7 @@ from . import welcome
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("Notify", "0.7")
-from gi.repository import Adw, Gio, Gtk, Notify, GLib  # noqa E:402
+from gi.repository import Adw, Gio, Gtk, Notify, GLib, Gdk  # noqa E:402
 
 Notify.init("Eeman")
 
@@ -304,4 +304,6 @@ class DisplayWindow(Adw.ApplicationWindow):
         )
 
     def show_donate(self, action, params):
-        print("open donate")
+        self.donate_launcher = Gtk.UriLauncher()
+        self.donate_launcher.set_uri("https://ko-fi.com/shuriken1812")
+        self.donate_launcher.launch()
