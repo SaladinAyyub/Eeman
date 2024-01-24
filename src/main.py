@@ -54,7 +54,7 @@ class EemanApplication(Adw.Application):
         about = Adw.AboutWindow(
             transient_for=self.props.active_window,
             application_name="eeman",
-            application_icon="org.codeberg.SHuRiKeN.Eeman",
+            application_icon="sh.shuriken.Eeman",
             developer_name="shuriken",
             version="0.1.0",
             developers=["shuriken"],

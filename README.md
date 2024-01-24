@@ -1,3 +1,5 @@
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G2G8TLR6I)
+
 ## About
 Eeman is an application to get Salah (Prayer) timings and read the beautiful Quran with more features planned.
 
