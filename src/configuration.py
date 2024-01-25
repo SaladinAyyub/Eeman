@@ -5,7 +5,7 @@ from gi.repository import GLib
 
 config = ConfigParser()
 
-config_path = Path(GLib.get_user_data_dir(), "eeman", "config.ini")
+config_path = Path(GLib.get_user_data_dir(), ".", "config.ini")
 
 if not config_path.is_file():
     # Fall back to default config file
