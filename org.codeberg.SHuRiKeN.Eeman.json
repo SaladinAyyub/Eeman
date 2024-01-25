@@ -91,7 +91,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "file:///var/home/kramo/Projects"
+                    "url" : "https://codeberg.org/SHuRiKeN/Eeman"
                 }
             ]
         }
