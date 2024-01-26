@@ -17,6 +17,8 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+from .gui import welcome
+from gi.repository import Adw, Gio
 import sys
 
 import gi
@@ -24,17 +26,13 @@ import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 
-from gi.repository import Adw, Gio
-
-from .gui import welcome
-
 
 class EemanApplication(Adw.Application):
     """The main application singleton class."""
 
     def __init__(self):
         super().__init__(
-            application_id="org.codeberg.SHuRiKeN.Eeman",
+            application_id="sh.shuriken.Eeman",
             flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
         )
         self.create_action("quit", lambda *_: self.quit(), ["<primary>q"])
