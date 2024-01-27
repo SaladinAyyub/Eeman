@@ -18,14 +18,13 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from .gui import welcome
-from gi.repository import Adw, Gio
 import sys
 
 import gi
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-
+from gi.repository import Adw, Gio
 
 class EemanApplication(Adw.Application):
     """The main application singleton class."""

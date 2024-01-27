@@ -1,4 +1,3 @@
-from gi.repository import Adw, Gio, Gtk, Notify, GLib
 import gi
 from datetime import datetime
 from eeman.libs import setup
@@ -10,6 +9,7 @@ from . import welcome
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
 gi.require_version("Notify", "0.7")
+from gi.repository import Adw, Gio, Gtk, Notify, GLib
 
 Notify.init("Eeman")
 

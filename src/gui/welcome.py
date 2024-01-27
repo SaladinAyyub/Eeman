@@ -1,4 +1,3 @@
-from gi.repository import Adw, Gtk
 import sys
 
 import gi
@@ -10,6 +9,7 @@ from . import preferences as prf
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
+from gi.repository import Adw, Gtk
 
 app_name = "Eeman"
 
