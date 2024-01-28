@@ -17,14 +17,17 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .gui import welcome
+from eeman.gui import welcome
+from eeman.gui import display
 import sys
 
 import gi
+from eeman.configuration import config, get_conf
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Adw, Gio
+from gi.repository import Adw, Gio  # noqa: E402
+
 
 class EemanApplication(Adw.Application):
     """The main application singleton class."""
@@ -44,7 +47,19 @@ class EemanApplication(Adw.Application):
         We raise the application's main window, creating it if
         necessary.
         """
-        welcome.run()
+        get_conf()
+        sm = Adw.StyleManager().get_default()
+        if config["Appearance"]["theme"] == "Dark":
+            sm.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+        elif config["Appearance"]["theme"] == "Light":
+            sm.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
+
+        if config["App"]["first_run"] == "Yes":
+            welcome_win = welcome.WelcomeWindow(application=self)
+            welcome_win.present()
+        elif config["App"]["first_run"] == "No":
+            display_window = display.DisplayWindow(application=self)
+            display_window.present()
 
     def on_about_action(self, widget, _):
         """Callback for the app.about action."""

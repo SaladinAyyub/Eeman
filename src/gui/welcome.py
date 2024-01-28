@@ -1,7 +1,5 @@
-import sys
-
 import gi
-from eeman.configuration import config, get_conf
+from eeman import main
 from eeman.libs import setup as setup
 
 from . import display
@@ -9,7 +7,7 @@ from . import preferences as prf
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Adw, Gtk
+from gi.repository import Adw, Gtk  # noqa E:402
 
 app_name = "Eeman"
 
@@ -88,37 +86,9 @@ class WelcomeWindow(Gtk.ApplicationWindow):
 
     def show_display(self, done_button):
         setup.set_config("App", "first_run", "No")
-        display_window = display.DisplayWindow(application=app)
+        display_window = display.DisplayWindow(application=self.get_application())
         display_window.present()
         self.close()
 
     def go_back(self, done_button):
         self.carousel.scroll_to(self.page2, True)
-
-
-class MyApp(Adw.Application):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.connect("activate", self.on_activate)
-
-    def on_activate(self, app):
-        get_conf()
-        sm = Adw.StyleManager().get_default()
-        if config["Appearance"]["theme"] == "Dark":
-            sm.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
-        elif config["Appearance"]["theme"] == "Light":
-            sm.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
-
-        if config["App"]["first_run"] == "Yes":
-            self.win = WelcomeWindow(application=app)
-            self.win.present()
-        elif config["App"]["first_run"] == "No":
-            display_window = display.DisplayWindow(application=app)
-            display_window.present()
-
-
-app = MyApp(application_id="sh.shuriken.Eeman")
-
-
-def run():
-    app.run(sys.argv)

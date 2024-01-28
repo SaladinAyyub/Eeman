@@ -4,7 +4,8 @@ from eeman.configuration import config
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Adw, Gtk
+from gi.repository import Adw, Gtk  # noqa E:402
+
 
 class PreferencesPage(Adw.PreferencesPage):
     def __init__(self, *args, **kwargs):
