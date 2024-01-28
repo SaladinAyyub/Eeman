@@ -296,7 +296,7 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.about_window.set_application_icon("sh.shuriken.Eeman")
         self.about_window.set_developer_name("shuriken")
         self.about_window.set_version("0.1.0")
-        self.about_window.set_website("https://shuriken.sh")
+        self.about_window.set_website("https://codeberg.org/SHuRiKeN/Eeman")
         self.about_window.set_license_type(Gtk.License.GPL_3_0)
         self.about_window.set_comments(
             "Eeman is an app to track prayer times, read the quran etc. "

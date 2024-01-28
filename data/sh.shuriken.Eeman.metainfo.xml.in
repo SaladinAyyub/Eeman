@@ -3,7 +3,44 @@
 	<id>sh.shuriken.Eeman.desktop</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
+  <name>Eeman</name>
+  <developer_name translatable="no">SHuRiKeN</developer_name>
+  <url type="bugtracker">https://codeberg.org/SHuRiKeN/Eeman</url>
+  <url type="donation">https://ko-fi.com/shuriken1812</url>
+  <summary>Track Salah timings, Read the Beautiful Quran</summary>
 	<description>
-	  <p>No description</p>
+	  <p>An app that lets you track and get notified of your Salah timings, and read the beautiful Quran.</p>
+    <p>Features:</p>
+    <ul>
+      <li>Choose calculation methods</li>
+      <li>Ability to get location from IP or manually</li>
+      <li>Choose school of thought, i.e later Asr time for Hanafi</li>
+      <li>read the Quran with popular translation of Saheeh International</li>
+    </ul>
 	</description>
+  <releases>
+    <release version="0.1.0" date="2024-01-28">
+      <description translatable="no">
+        <p>First release of Eeman</p>
+      </description>
+    </release>
+  </releases>
+  <screenshots>
+    <screenshot>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/branch/main/.screenshots/prayer_light_theme.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/branch/main/.screenshots/prayer_dark_theme.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/src/branch/main/.screenshots/quran_light_theme.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/src/branch/main/.screenshots/quran_dark_theme.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/src/branch/main/.screenshots/preferences.png</image>
+    </screenshot>
+  </screenshots>
+  <content_rating type="oars-1.1"/>
 </component>
