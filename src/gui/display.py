@@ -20,6 +20,7 @@ class DisplayWindow(Adw.ApplicationWindow):
 
         self.set_name(welcome.app_name)
         self.set_default_size(500, 600)
+        self.set_hide_on_close(True)
 
         self.box_main = Gtk.Box(
             orientation=Gtk.Orientation.VERTICAL,
