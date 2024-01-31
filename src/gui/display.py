@@ -296,7 +296,7 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.about_window.set_application_name("Eeman")
         self.about_window.set_application_icon("sh.shuriken.Eeman")
         self.about_window.set_developer_name("shuriken")
-        self.about_window.set_version("0.1.0")
+        self.about_window.set_version("0.1.1")
         self.about_window.set_website("https://codeberg.org/SHuRiKeN/Eeman")
         self.about_window.set_license_type(Gtk.License.GPL_3_0)
         self.about_window.set_comments(

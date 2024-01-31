@@ -68,7 +68,7 @@ class EemanApplication(Adw.Application):
             application_name="eeman",
             application_icon="sh.shuriken.Eeman",
             developer_name="shuriken",
-            version="0.1.0",
+            version="0.1.1",
             developers=["shuriken"],
             copyright="© 2024 shuriken",
         )

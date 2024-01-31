@@ -21,27 +21,27 @@
     </ul>
 	</description>
   <releases>
-    <release version="0.1.0" date="2024-01-28">
+    <release version="0.1.1" date="2024-01-31">
       <description translatable="no">
-        <p>First release of Eeman</p>
+        <p>Allow app to run in background when closed for notifications</p>
       </description>
     </release>
   </releases>
   <screenshots>
     <screenshot type="default">
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.0/.screenshots/prayer_light_theme.png</image>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/prayer_light_theme.png</image>
     </screenshot>
     <screenshot>
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.0/.screenshots/prayer_dark_theme.png</image>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/prayer_dark_theme.png</image>
     </screenshot>
     <screenshot>
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.0/.screenshots/quran_light_theme.png</image>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/quran_light_theme.png</image>
     </screenshot>
     <screenshot>
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.0/.screenshots/quran_dark_theme.png</image>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/quran_dark_theme.png</image>
     </screenshot>
     <screenshot>
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.0/.screenshots/preferences.png</image>
+      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/preferences.png</image>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1"/>
