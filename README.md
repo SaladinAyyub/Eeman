@@ -18,3 +18,8 @@ Quran Light theme             |  Quran Dark theme
 
 ## LICENSE
 This project is under GPL-3.0 license
+
+## Credits
+Alhamdulillah (Praise be to Allah)
+[Islamic Network](https://islamic.network/) - For amazing al-adhan, al-quran APIs
+
