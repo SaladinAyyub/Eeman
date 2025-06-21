@@ -1,6 +1,6 @@
 # main.py
 #
-# Copyright 2024 SHuRiKeN(shuriken.sh)
+# Copyright 2024 SHuRiKeN(saladin.pro)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -67,10 +67,10 @@ class EemanApplication(Adw.Application):
             transient_for=self.props.active_window,
             application_name="eeman",
             application_icon="pro.saladin.Eeman",
-            developer_name="shuriken",
+            developer_name="saladin",
             version="0.1.1",
-            developers=["shuriken"],
-            copyright="© 2024 shuriken",
+            developers=["saladin"],
+            copyright="© 2024 saladin",
         )
         about.present()
 

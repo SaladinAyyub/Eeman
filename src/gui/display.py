@@ -295,9 +295,9 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.about_window.present()
         self.about_window.set_application_name("Eeman")
         self.about_window.set_application_icon("pro.saladin.Eeman")
-        self.about_window.set_developer_name("shuriken")
+        self.about_window.set_developer_name("saladin")
         self.about_window.set_version("0.1.1")
-        self.about_window.set_website("https://codeberg.org/SHuRiKeN/Eeman")
+        self.about_window.set_website("https://github.com/SaladinAyyub/Eeman")
         self.about_window.set_license_type(Gtk.License.GPL_3_0)
         self.about_window.set_comments(
             "Eeman is an app to track prayer times, read the quran etc. "
@@ -306,5 +306,5 @@ class DisplayWindow(Adw.ApplicationWindow):
 
     def show_donate(self, action, params):
         self.donate_launcher = Gtk.UriLauncher()
-        self.donate_launcher.set_uri("https://ko-fi.com/shuriken1812")
+        self.donate_launcher.set_uri("https://ko-fi.com/saladinayyub/")
         self.donate_launcher.launch()

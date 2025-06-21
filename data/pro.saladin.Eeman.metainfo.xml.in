@@ -6,9 +6,9 @@
 	<project_license>GPL-3.0-or-later</project_license>
   <name>Eeman</name>
   <developer_name translatable="no">SHuRiKeN</developer_name>
-  <url type="homepage">https://codeberg.org/SHuRiKeN/Eeman</url>
-  <url type="bugtracker">https://codeberg.org/SHuRiKeN/Eeman</url>
-  <url type="donation">https://ko-fi.com/shuriken1812</url>
+  <url type="homepage">https://github.com/SaladinAyyub/Eeman</url>
+  <url type="bugtracker">https://github.com/SaladinAyyub/Eeman</url>
+  <url type="donation">https://ko-fi.com/saladinayyub/</url>
   <summary>Track Salah, Read the Quran</summary>
 	<description>
 	  <p>An app that lets you track and get notified of your Salah timings, and read the beautiful Quran.</p>
@@ -29,19 +29,19 @@
   </releases>
   <screenshots>
     <screenshot type="default">
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/prayer_light_theme.png</image>
+      <image>https://github.com/SaladinAyyub/Eeman/raw/tag/0.1.1/.screenshots/prayer_light_theme.png</image>
     </screenshot>
     <screenshot>
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/prayer_dark_theme.png</image>
+      <image>https://github.com/SaladinAyyub/Eeman/raw/tag/0.1.1/.screenshots/prayer_dark_theme.png</image>
     </screenshot>
     <screenshot>
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/quran_light_theme.png</image>
+      <image>https://github.com/SaladinAyyub/Eeman/raw/tag/0.1.1/.screenshots/quran_light_theme.png</image>
     </screenshot>
     <screenshot>
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/quran_dark_theme.png</image>
+      <image>https://github.com/SaladinAyyub/Eeman/raw/tag/0.1.1/.screenshots/quran_dark_theme.png</image>
     </screenshot>
     <screenshot>
-      <image>https://codeberg.org/SHuRiKeN/Eeman/raw/tag/0.1.1/.screenshots/preferences.png</image>
+      <image>https://github.com/SaladinAyyub/Eeman/raw/tag/0.1.1/.screenshots/preferences.png</image>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1"/>
