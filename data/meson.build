@@ -1,6 +1,6 @@
 desktop_file = i18n.merge_file(
-        input: 'sh.shuriken.Eeman.desktop.in',
-       output: 'sh.shuriken.Eeman.desktop',
+        input: 'pro.saladin.Eeman.desktop.in',
+       output: 'pro.saladin.Eeman.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -13,8 +13,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-        input: 'sh.shuriken.Eeman.metainfo.xml.in',
-       output: 'sh.shuriken.Eeman.metainfo.xml',
+        input: 'pro.saladin.Eeman.metainfo.xml.in',
+       output: 'pro.saladin.Eeman.metainfo.xml',
        po_dir: '../po',
       install: true,
   install_dir: get_option('datadir') / 'metainfo'
@@ -24,7 +24,7 @@ appstreamcli = find_program('appstreamcli', required: false, disabler: true)
 test('Validate appstream file', appstreamcli,
      args: ['validate', '--no-net', '--explain', appstream_file])
 
-install_data('sh.shuriken.Eeman.gschema.xml',
+install_data('pro.saladin.Eeman.gschema.xml',
   install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
 )
 

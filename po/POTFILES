@@ -1,5 +1,5 @@
-data/sh.shuriken.Eeman.desktop.in
-data/sh.shuriken.Eeman.metainfo.xml.in
-data/sh.shuriken.Eeman.gschema.xml
+data/pro.saladin.Eeman.desktop.in
+data/pro.saladin.Eeman.metainfo.xml.in
+data/pro.saladin.Eeman.gschema.xml
 src/main.py
 src/window.py

@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://flathub.org/apps/sh.shuriken.Eeman"><img src="https://flathub.org/assets/badges/flathub-badge-en.svg" width="160" alt="Download on Flathub"></a>
+<a href="https://flathub.org/apps/pro.saladin.Eeman"><img src="https://flathub.org/assets/badges/flathub-badge-en.svg" width="160" alt="Download on Flathub"></a>
 <a href='https://ko-fi.com/G2G8TLR6I' target='_blank'><img height='50' style='border:0px;height:50px;' src='https://storage.ko-fi.com/cdn/brandasset/kofi_s_tag_white.png?' border='0' alt='Donate and Support' /></a>
 </p>
 

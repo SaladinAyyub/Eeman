@@ -34,7 +34,7 @@ class EemanApplication(Adw.Application):
 
     def __init__(self):
         super().__init__(
-            application_id="sh.shuriken.Eeman",
+            application_id="pro.saladin.Eeman",
             flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
         )
         self.create_action("quit", lambda *_: self.quit(), ["<primary>q"])
@@ -66,7 +66,7 @@ class EemanApplication(Adw.Application):
         about = Adw.AboutWindow(
             transient_for=self.props.active_window,
             application_name="eeman",
-            application_icon="sh.shuriken.Eeman",
+            application_icon="pro.saladin.Eeman",
             developer_name="shuriken",
             version="0.1.1",
             developers=["shuriken"],

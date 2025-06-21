@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-	<id>sh.shuriken.Eeman</id>
-  <launchable type="desktop-id">sh.shuriken.Eeman.desktop</launchable>
+	<id>pro.saladin.Eeman</id>
+  <launchable type="desktop-id">pro.saladin.Eeman.desktop</launchable>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
   <name>Eeman</name>

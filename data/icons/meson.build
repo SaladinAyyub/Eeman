@@ -1,4 +1,4 @@
-application_id = 'sh.shuriken.Eeman'
+application_id = 'pro.saladin.Eeman'
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(

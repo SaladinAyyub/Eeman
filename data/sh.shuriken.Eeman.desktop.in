@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=eeman
 Exec=eeman
-Icon=sh.shuriken.Eeman
+Icon=pro.saladin.Eeman
 Terminal=false
 Type=Application
 Categories=Utility;GNOME;GTK;

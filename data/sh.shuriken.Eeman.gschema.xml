@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="eeman">
-	<schema id="sh.shuriken.Eeman" path="/sh/shuriken/Eeman/">
+	<schema id="pro.saladin.Eeman" path="/pro.saladin/Eeman/">
 	</schema>
 </schemalist>
