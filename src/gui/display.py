@@ -1,7 +1,8 @@
-import gi
 from datetime import datetime
-from eeman.libs import setup
+
+import gi
 from eeman.configuration import config
+from eeman.libs import setup
 
 from . import preferences as pref
 from . import welcome
@@ -296,7 +297,7 @@ class DisplayWindow(Adw.ApplicationWindow):
         self.about_window.set_application_name("Eeman")
         self.about_window.set_application_icon("pro.saladin.Eeman")
         self.about_window.set_developer_name("saladin")
-        self.about_window.set_version("0.1.1")
+        self.about_window.set_version("0.1.2")
         self.about_window.set_website("https://github.com/SaladinAyyub/Eeman")
         self.about_window.set_license_type(Gtk.License.GPL_3_0)
         self.about_window.set_comments(

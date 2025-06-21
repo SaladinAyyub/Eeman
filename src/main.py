@@ -1,6 +1,6 @@
 # main.py
 #
-# Copyright 2024 SHuRiKeN(saladin.pro)
+# Copyright 2025 SHuRiKeN(saladin.pro)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,12 +17,11 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from eeman.gui import welcome
-from eeman.gui import display
 import sys
 
 import gi
 from eeman.configuration import config, get_conf
+from eeman.gui import display, welcome
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
@@ -68,9 +67,9 @@ class EemanApplication(Adw.Application):
             application_name="eeman",
             application_icon="pro.saladin.Eeman",
             developer_name="saladin",
-            version="0.1.1",
+            version="0.1.2",
             developers=["saladin"],
-            copyright="© 2024 saladin",
+            copyright="© 2025 saladin",
         )
         about.present()
 
