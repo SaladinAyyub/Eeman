@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
 	<id>pro.saladin.Eeman</id>
+  <provides>
+  <id>sh.shuriken.Eeman</id>
+  <replaces>
+    <id>sh.shuriken.Eeman</id>
+  </replaces>
+</provides>
   <launchable type="desktop-id">pro.saladin.Eeman.desktop</launchable>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-3.0-or-later</project_license>
   <name>Eeman</name>
-  <developer_name translatable="no">SHuRiKeN</developer_name>
+  <developer_name translatable="no">Saladin</developer_name>
   <url type="homepage">https://github.com/SaladinAyyub/Eeman</url>
   <url type="bugtracker">https://github.com/SaladinAyyub/Eeman</url>
   <url type="donation">https://ko-fi.com/saladinayyub/</url>
@@ -21,7 +27,7 @@
     </ul>
 	</description>
   <releases>
-    <release version="0.1.2" date="2025-06-21">
+    <release version="0.1.2" date="2025-06-23">
       <description translatable="no">
         <p>Repository migration</p>
       </description>
