@@ -2,8 +2,6 @@
   "id": "pro.saladin.Eeman",
   "runtime": "org.gnome.Platform",
   "runtime-version": "48",
-  "provides": { "id": "pro.saladin.Eeman" },
-  "replaces": { "id": "pro.saladin.Eeman" },
   "sdk": "org.gnome.Sdk",
   "command": "eeman",
   "finish-args": [
